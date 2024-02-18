@@ -1,0 +1,78 @@
+p {
+    text-align: center;
+}
+
+form {
+    margin-top: 40px;
+}
+
+.signupinput {
+    margin-top: 45px;
+}
+
+.signupinput > label,
+.password label , .email label{
+    margin-left: 10px;
+}
+
+.signupinput > input,
+.signupinput > .password input,
+.email input{
+    margin-top: 10px;
+    margin-left: 5px;
+    width: 317px;
+    height: 44px;
+}
+
+.signupinput > .check{
+    width: 104px;
+    height: 44px;
+    margin-left: 10px;
+    color: #fff;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: #3faf43;
+    background-color: #3faf43;
+}
+.join{
+    width: 336px;
+    height: 48px;
+    color: #fff;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: #3faf43;
+    background-color: #3faf43;
+}
+
+
+.signupinput > .nickname {
+    width: 201px;
+    margin-bottom: 20px;
+}
+
+.passwordcondition {
+    margin-top: 15px;
+    font-size: 8pt;
+    margin-left: -45px;
+    margin-bottom: 30px;
+}
+
+.join {
+    margin-top: 20px;
+}
+
+.password{
+    margin-top: 40px;
+}
+.email{
+    margin-top: 20px;
+}
+
+.signupinput input:focus,
+.password input:focus,
+.email input:focus,
+.addressdiv input:focus {
+    border-color: rgb(241, 158, 3);
+    outline: none; 
+    border-width: 2px;
+}

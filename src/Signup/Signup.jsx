@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import './Signup.css';
-import Map from './Map';  // Import your Map component
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cba9e0e466449058226a595a91be8a60"></script>
+import { useNavigate } from 'react-router-dom';
+import '../Signup/Signup.css'
 
 const EmailInput = ({ onEmailChange }) => {
   const [emailValue, setEmailValue] = useState("");
@@ -39,7 +38,6 @@ const EmailInput = ({ onEmailChange }) => {
 
   return (
     <>
-      <label>이메일</label>
       <input
         list="email"
         value={emailValue}
@@ -57,6 +55,8 @@ const EmailInput = ({ onEmailChange }) => {
 };
 
 const Signup = () => {
+
+  const navigate = useNavigate();
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
   const [ConfirmPassword, setConfirmPassword] = useState("");
@@ -147,10 +147,12 @@ const Signup = () => {
       return;
     }
 
+    // alert("회원가입에 성공하였습니다.");
     console.log("Nickname:", Nickname);
     console.log("Address:", Address);
     console.log("Password:", Password);
     console.log("Email:", Email);
+    navigate('/location');
   };
 
   return (
@@ -163,30 +165,17 @@ const Signup = () => {
           <input className='nickname' type='text' value={Nickname} onChange={onNicknameHandler} placeholder="닉네임" />
           <button className='check' type='button' onClick={checkNicknameAvailability}>중복확인</button>
           {!isNicknameAvailable && <p className="nickname-error">이미 사용 중인 닉네임입니다.</p>}<br />
-
-          <label className='address'>주소</label><br />
-          <div className="addressdiv">
-            <input type='text' value={Address} onChange={onAddressHandler} placeholder="우편번호" />
-            <button className='check' type='button' onClick={() => setIsFocused(true)}>우편번호 찾기</button><br />
-            
-            {/* 팝업으로 우편번호 검색창이 나오도록 수정 */}
-            {isFocused && (
-              <div className="popup">
-                {/* 팝업 내용 (우편번호 검색 창) */}
-                <Map />
-              </div>
-            )}
+          <div className="email">
+            <label>이메일</label><br />
+            <EmailInput onEmailChange={onEmailChange} />
           </div>
-
           <div className="password">
             <label>비밀번호</label><br />
             <input type='password' value={Password} onChange={onPasswordHandler} placeholder="비밀번호" />
             <input type='password' value={ConfirmPassword} onChange={onConfirmPasswordHandler} placeholder="비밀번호 확인" /><br />
             <p className='passwordcondition'>6~20글자/대문자,소문자,숫자,특수문자 중 2가지 이상 조합</p>
           </div>
-          <div className="email">
-            <EmailInput onEmailChange={onEmailChange} />
-          </div>
+
         </div>
         <br />
         <div className="loginbutton">
