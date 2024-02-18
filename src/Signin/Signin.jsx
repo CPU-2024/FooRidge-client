@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import logo from './img/logo.png';
-import './Signin.css';
+import logo from '../assets/logo.png';
+import '../Signin/Signin.css';
+
 
 export default function Signin() {
+
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
 
@@ -34,7 +36,7 @@ export default function Signin() {
         </div>
         <br />
         <div className="loginbutton">
-         <button className='login' type='submit'>로그인</button>
+          <button className='login' type='submit'>로그인</button>
         </div>
       </form>
     </div>
