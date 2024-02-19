@@ -8,7 +8,7 @@ import Main from './Main/Main';
 function App() {
   return (
     <Router>
-    <Routes>
+    <Routes> 
       <Route path="/" element={<SignupSignin />} />
       <Route path="/login" element={<Signin />} />
       <Route path="/signup" element={<Signup />} />
