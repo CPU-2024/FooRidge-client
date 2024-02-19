@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../Signup/Signup.css'
+import { FaChevronLeft   } from "react-icons/fa";
 
 const EmailInput = ({ onEmailChange }) => {
   const [emailValue, setEmailValue] = useState("");
@@ -157,7 +158,9 @@ const Signup = () => {
 
   return (
     <div>
-      <p>회원가입</p>
+      <div className="header">
+        <FaChevronLeft></FaChevronLeft><p>회원가입</p>
+      </div>
       <hr />
       <form style={{ display: 'flex', flexDirection: 'column' }} onSubmit={onSubmitHandler}>
         <div className="signupinput">

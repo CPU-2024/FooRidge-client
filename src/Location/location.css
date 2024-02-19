@@ -1,5 +1,19 @@
 
-.map{
+.header {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+hr{
+  margin-top: 15px;
+}
+
+.header p {
+  margin: 0; 
+  flex-grow: 1;
+  margin-left: -10px;
+}.map{
   margin-top: 4%;
   margin-left: 8px;
 }
@@ -37,7 +51,7 @@
   width: 327px;
 }
 .adress{
-  margin-top: 20px;
+  margin-top: 25px;
   margin-left: 10px;
   margin-bottom: 0px;
 }
