@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import '../Location/location.css';
+import { FaChevronLeft   } from "react-icons/fa";
+
 
 const Location = () => {
     const [state, setState] = useState({
@@ -90,8 +92,11 @@ const Location = () => {
 
     return (
         <div className="location">
-            <p>회원가입</p><hr />
-            <div className="map" id="map" style={{ width: "328px", height: "480px" }}></div>
+           <div className="header">
+             <FaChevronLeft></FaChevronLeft><p>회원가입</p>
+            </div>
+            <hr />
+            <div className="map" id="map" style={{ width: "328px", height: "450px" }}></div>
             {state.userLocation && (
                 <>
                     <h4 className="adress">주소</h4>
