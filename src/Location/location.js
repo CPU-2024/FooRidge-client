@@ -5,7 +5,7 @@ const Location = () => {
     const [state, setState] = useState({
         center: { lat: 37.365264512305174, lng: 127.10676860117488 },
         isPanto: false,
-        userLocation: null // 추가: 사용자의 현재 위치를 저장할 상태 추가
+        userLocation: null
     });
 
     useEffect(() => {
@@ -30,32 +30,27 @@ const Location = () => {
     const initializeMap = (initialLat, initialLng) => {
         const container = document.getElementById('map');
         const options = {
-            center: new window.kakao.maps.LatLng(initialLat, initialLng), // Use window.kakao.maps.LatLng
+            center: new window.kakao.maps.LatLng(initialLat, initialLng),
             level: 3
         };
 
-        const map = new window.kakao.maps.Map(container, options); // Use window.kakao.maps.Map
-        const markerPosition = new window.kakao.maps.LatLng(initialLat, initialLng); // Use window.kakao.maps.LatLng
+        const map = new window.kakao.maps.Map(container, options);
+        const markerPosition = new window.kakao.maps.LatLng(initialLat, initialLng);
         const marker = new window.kakao.maps.Marker({
             position: markerPosition,
             draggable: true
         });
         marker.setMap(map);
 
-        // 클릭 이벤트 리스너 추가
         window.kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
-            // 클릭한 좌표로 마커의 위치 업데이트
             marker.setPosition(mouseEvent.latLng);
         });
 
-        // 드래그 이벤트 리스너 추가
         window.kakao.maps.event.addListener(marker, 'dragend', function () {
-            // 마커의 새로운 위치로 지도 중심 이동
             map.setCenter(marker.getPosition());
         });
     };
 
-    // 추가: 사용자의 현재 위치를 가져오는 함수
     const getUserLocation = () => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
@@ -64,8 +59,9 @@ const Location = () => {
                     const userLng = position.coords.longitude;
                     setState(prevState => ({
                         ...prevState,
-                        userLocation: { lat: userLat, lng: userLng } // 사용자 위치 업데이트
+                        userLocation: { lat: userLat, lng: userLng }
                     }));
+                    getAddressFromCoordinates(userLat, userLng);
                 },
                 (error) => {
                     console.error("사용자 위치를 가져오는 중 오류 발생:", error.message);
@@ -76,15 +72,40 @@ const Location = () => {
         }
     };
 
+    const getAddressFromCoordinates = (lat, lng) => {
+        const apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`;
+
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                if (data.display_name) {
+                    const address = data.display_name;
+                    setState(prevState => ({
+                        ...prevState,
+                        userLocation: { lat, lng, address }
+                    }));
+                } else {
+                    console.error("주소를 찾을 수 없습니다.");
+                }
+            })
+            .catch(error => {
+                console.error("주소를 가져오는 중 오류 발생:", error.message);
+            });
+    };
+
     return (
         <div className="location">
             <p>회원가입</p><hr />
             <div className="map" id="map" style={{ width: "328px", height: "536px" }}></div>
-            <button onClick={getUserLocation}>내 위치 가져오기</button> {/* 수정: 버튼 클릭 시 getUserLocation 함수 호출 */}
-            {/* 추가: 사용자 위치가 있는 경우 화면에 표시 */}
+            <button onClick={getUserLocation} className='get_location'>현재 위치</button>
             {state.userLocation && (
-                <p>현재 위치: 위도 {state.userLocation.lat}, 경도 {state.userLocation.lng}</p>
+                <>
+                    <div className="get_adress">
+                        <p>{state.userLocation.address}</p>
+                    </div>
+                </>
             )}
+            <button className="location_storage">내 위치 저장</button>
         </div>
     );
 }

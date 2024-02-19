@@ -1,5 +1,37 @@
 
 .map{
-  margin-top: 20px;
+  margin-top: 4%;
   margin-left: 8px;
+}
+
+.location_storage{
+  width: 336px;
+  height: 49px;
+  color: #fff;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: #3faf43;
+  background-color: #3faf43;
+  margin-left: 1%;
+  margin-top: 5%;
+  font-size: 15px;
+  text-align: center;
+}
+
+.get_location{
+  width: 100px;
+  height: 30px;
+  color: #fff;
+  border-radius: 10px;
+  border-style: solid 1px #3faf3f;
+  border-color: #3faf43;
+  background-color: #3faf43;
+  margin-left: 1%;
+  margin-top: 2%;
+}
+
+.get_adress{
+  border-radius: 7px;
+  border: solid 1px #3faf43;
+  margin-top: 2%;
 }
