@@ -12,10 +12,9 @@
   border-style: solid;
   border-color: #3faf43;
   background-color: #3faf43;
-  margin-left: 1%;
-  margin-top: 5%;
+  margin-left: 4px;
+  margin-top: 30px;
   font-size: 15px;
-  text-align: center;
 }
 
 .get_location{
@@ -33,5 +32,12 @@
 .get_adress{
   border-radius: 7px;
   border: solid 1px #3faf43;
-  margin-top: 2%;
+  margin-top: 10px;
+  margin-left: 8px;
+  width: 327px;
+}
+.adress{
+  margin-top: 20px;
+  margin-left: 10px;
+  margin-bottom: 0px;
 }
