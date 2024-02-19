@@ -3,6 +3,7 @@ import Signup from './Signup/Signup';
 import SignupSignin from './Signinup/SignupSignin';
 import Signin from './Signin/Signin';
 import Location from './Location/location';
+import Main from './Main/Main';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Route path="/login" element={<Signin />} />
       <Route path="/signup" element={<Signup />} />
       <Route path='/location' element={<Location/>}/>
+      <Route path='/main' element={<Main/>}/>
     </Routes>
   </Router>
   // <Location />
