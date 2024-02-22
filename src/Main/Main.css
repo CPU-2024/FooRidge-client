@@ -1,21 +1,30 @@
 body{
     background-color: #fff;
 }
-input{
-    margin-top: 7%;
-    border-radius: 10px;
-    border-style: solid;
-    border-color: rgb(207, 207, 207);
-    border-width: 1px;
-    padding-left:15px ;
-    width: 283px;
-    height: 49px;
-}
-.input{
+.page{
     text-align: center;
-    margin-top: 7%;
 }
-.page>h2{
+h2{
     color: #3faf43;
-    font-weight: bolder;
+    font-weight: bold;
+    margin-top: 30%;
+    margin-right: 48%;
+}
+.button{
+    text-align: center;
+    margin-top: 10px;
+    display: inline-block;
+}
+.button img{
+    margin-right: 6px;
+    margin-left: 6px;
+}
+.post{
+    margin-right: 40%;
+}
+.more h5{
+    color: #3faf43;
+    text-align: right;
+    margin-bottom: 30%;
+    margin-right: 6%;
 }
