@@ -11,7 +11,7 @@
   .header p {
     margin: 0; 
     flex-grow: 1;
-    margin-left: -10px;
+    margin-left: -1px;
   }
 form {
     margin-top: 40px;
@@ -19,6 +19,7 @@ form {
 
 .signupinput {
     margin-top: 35px;
+    margin-left: 7px;
 }
 
 .signupinput > label,
@@ -66,7 +67,7 @@ form {
 .passwordcondition {
     margin-top: 15px;
     font-size: 8pt;
-    margin-left: 10px;
+    margin-left: -7px;
     margin-bottom: 30px;
 }
 
