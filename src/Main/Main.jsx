@@ -14,6 +14,7 @@ import profile from '../assets/profile.png';
 import { useNavigate } from 'react-router-dom';
 import '../Main/Main.css';
 
+
 export default function Main() {
   const navigate = useNavigate();
 
@@ -39,9 +40,27 @@ export default function Main() {
                   <h5 onClick={handleMore}>더보기</h5>
               </div>
               <div className='post'>
-                  <img src={dunkin} alt="" />
-                  <img src={bagette} alt="" />
-                  <img src={hamberger} alt="" />
+                <button className='dunkinButton'>
+                  <img src={dunkin} alt='Bagette' className='buttonImage' />
+                  <div className='text'>
+                    <span className='largeText'>던킨도너츠</span>
+                    <span className='smallText'>도넛 나눔 합니다</span>
+                  </div>
+                </button>
+                <button className='bagetteButton'>
+                  <img src={bagette} alt='Bagette' className='buttonImage' />
+                  <div className='text'>
+                    <span className='largeText'>파리바게트</span>
+                    <span className='smallText'>빵 남은 것 나눔 합니다</span>
+                  </div>
+                </button>
+                <button className='hambergerButton'>
+                  <img src={hamberger} alt='Hamberger' className='buttonImage' />
+                  <div className='text'>
+                    <span className='largeText'>맥도날드</span>
+                    <span className='smallText'>햄버거 10개 나눔 합니다</span>
+                  </div>
+                </button>
               </div>
               <div className='bottom_bar'>
                   <img src={home} alt="" />
