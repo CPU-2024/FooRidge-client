@@ -29,9 +29,15 @@ export default function Main() {
               <div className='adver'>
                 <About />
               </div>
-              <div className='button'>
-                  <img src={share} alt="Share" />
-                  <img src={low_price} alt="Low_Price" />
+              <div className='main_button'>
+                <button className='share'>
+                    <img src={share} alt='Share' className='mainImage' />
+                    <span className='mainText'>Share</span>
+                </button>
+                <button className='low_price'>
+                    <img src={low_price} alt='Low_Price' className='mainImage' />
+                    <span className='mainText'>Low Price</span>
+                </button>
               </div>
               <div className='recen'>
                   <h3>최근에 올라온 글</h3>

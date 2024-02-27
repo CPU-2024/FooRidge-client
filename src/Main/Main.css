@@ -10,15 +10,46 @@ h2{
     margin-top: 30%;
     margin-right: 48%;
 }
-.button{
+
+.main_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
+    
+}
+  
+.main_button button {
+    background-color: white;
+    color: white;
+    font-weight: 0;
     margin-top: 10px;
-    display: inline-block;
+    margin-left: 6px;
+    margin-right: 6px;
+    border: none;
+    border-radius: 15px;
+    padding: 10px 15px; 
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    width: 140px;
+    height: 140px;
+    
 }
-.button img{
-    margin-right: 13px;
-    margin-left: 13px;
+.mainImage{
+    width: 100px;
 }
+
+.mainText {
+    font-size: 15px; 
+    color: #3faf43;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 3px;
+  }
+  
  /* ======================================= 버튼 끝*/
 .recen{
     margin-right:48%;
