@@ -62,24 +62,24 @@ h2{
     font-size: 15px; 
     color: #3faf43;
     font-weight: bold;
+    margin-left: 10px;
+    text-align: left;
   }
   
   .smallText {
     color: gray;
     font-size: 12px; 
     margin-left: 10px;
-}
-
-  
+} 
   .text span{
     display: block;
+
   }
   
   .buttonImage {
     max-width: 50px;
     max-height: 50px; 
     margin-right: 5px; 
-    align-items: left;
     
   }
   .bottom_bar img {
