@@ -4,7 +4,7 @@ body{
 .page{
     text-align: center;
 }
-h2{
+.main h2{
     color: #3faf43;
     font-weight: bold;
     margin-top: 30%;
@@ -38,11 +38,11 @@ h2{
     height: 140px;
     
 }
-.mainImage{
+.main_button .mainImage{
     width: 100px;
 }
 
-.mainText {
+.main_button .mainText {
     font-size: 15px; 
     color: #3faf43;
     font-weight: bold;
@@ -70,9 +70,7 @@ h2{
     margin-top: -100px;
   }
   
-  .dunkinButton,
-  .bagetteButton,
-  .hambergerButton {
+  .post button {
     background-color: white;
     color: white;
     font-weight: 0;
@@ -88,8 +86,15 @@ h2{
     height: 65px;
     
   }
+
+  .post img {
+    max-width: 50px;
+    max-height: 50px; 
+    margin-right: 5px; 
+    
+  }
   
-  .largeText {
+  .post .text .largeText {
     font-size: 15px; 
     color: #3faf43;
     font-weight: bold;
@@ -97,22 +102,16 @@ h2{
     text-align: left;
   }
   
-  .smallText {
+  .post .text .smallText {
     color: gray;
     font-size: 12px; 
     margin-left: 10px;
 } 
-  .text span{
+  .post .text > span{
     display: block;
 
   }
   
-  .buttonImage {
-    max-width: 50px;
-    max-height: 50px; 
-    margin-right: 5px; 
-    
-  }
   .bottom_bar img {
     margin-top: 15px; 
     margin-right: 23px;

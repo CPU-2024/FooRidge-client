@@ -23,7 +23,7 @@ export default function Main() {
   };
 
   return (
-    <div>
+    <div className='main'>
       <h2>FOORIDGE</h2>
         <div className='page'>
               <div className='adver'>
