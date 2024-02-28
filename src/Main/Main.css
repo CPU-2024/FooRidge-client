@@ -112,10 +112,12 @@ body{
 
   }
   
-  .bottom_bar img {
-    margin-top: 15px; 
+  .bottom_bar *{
+    margin-top: 18px; 
     margin-right: 23px;
     margin-left: 23px;
+    size: 40px;
+    cursor: pointer;
 } 
 
 

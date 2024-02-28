@@ -12,8 +12,13 @@ import plus from '../assets/plus.png';
 import chat from '../assets/chat.png';
 import profile from '../assets/profile.png';
 import { useNavigate } from 'react-router-dom';
-import '../Main/Main.css';
+import { IoHomeOutline } from "react-icons/io5";
+import { IoMdSearch } from "react-icons/io"; 
+import { AiFillPlusCircle } from "react-icons/ai";
+import { IoChatbubblesOutline } from "react-icons/io5";
+import { CgProfile } from "react-icons/cg";
 
+import '../Main/Main.css';
 
 export default function Main() {
   const navigate = useNavigate();
@@ -21,6 +26,7 @@ export default function Main() {
   const handleMore = () => {
     navigate(''); // 회원가입 페이지로 이동
   };
+  
 
   return (
     <div className='main'>
@@ -69,11 +75,11 @@ export default function Main() {
                 </button>
               </div>
               <div className='bottom_bar'>
-                  <img src={home} alt="" />
-                  <img src={search} alt="" />
-                  <img src={plus} alt="" />
-                  <img src={chat} alt="" />
-                  <img src={profile} alt="" />
+                    <IoHomeOutline size='25'/>
+                    <IoMdSearch size='25'/>
+                    <AiFillPlusCircle size='25'/>
+                    <IoChatbubblesOutline size='25'/>
+                    <CgProfile size='25'/>
               </div>
         </div>
     </div>
