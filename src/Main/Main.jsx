@@ -77,7 +77,7 @@ export default function Main() {
               <div className='bottom_bar'>
                     <IoHomeOutline size='25'/>
                     <IoMdSearch size='25'/>
-                    <AiFillPlusCircle size='25'/>
+                    <AiFillPlusCircle size='25' color='#3faf43'/>
                     <IoChatbubblesOutline size='25'/>
                     <CgProfile size='25'/>
               </div>
