@@ -63,7 +63,6 @@ const Signup = () => {
   const [userPassword, setPassword] = useState("");
   const [ConfirmPassword, setConfirmPassword] = useState("");
   const [userName, setNickname] = useState("");
-  const [userAddress, setAddress] = useState("");
   const [isNicknameAvailable, setIsNicknameAvailable] = useState(true);
   const [passwordValidation, setPasswordValidation] = useState({
     length: false,
@@ -114,11 +113,6 @@ const Signup = () => {
     setIsFocused(true);
   };
 
-  const onAddressHandler = (event) => {
-    setAddress(event.currentTarget.value);
-    setIsFocused(true);
-  };
-
   const checkNicknameAvailability = async () => {
     // 닉네임 중복 확인 로직
   };
@@ -158,15 +152,16 @@ const Signup = () => {
     try{
       const response=await axios.post('http://localhost:8080/user',newUser)
       if(response.status===201){
-         alert('동아리 지원을 완료하였습니다')
+         alert('회원가입을 성공하셨습니다')
+         const {userId}=response.data;
+         navigate(`/location/${userId}`)
          console.log("Nickname:", userName);
-         console.log("Address:", userAddress);
          console.log("Password:", userPassword);
          console.log("Email:", userEmail);
-         navigate('/location');
+         //navigate('/location');
       }
     }catch(error){
-      alert('동아리 지원에 성공하였습니다')
+      alert('회원가입을 실패하셨습니다')
       console.log(error)
     }
 
@@ -200,6 +195,7 @@ const Signup = () => {
           <button onClick={handleJoinClick} className='join' type='submit'>가입하기</button>
         </div>
       </form>
+      
     </div>
   );
 };
