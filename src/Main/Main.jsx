@@ -12,7 +12,7 @@ import plus from '../assets/plus.png';
 import chat from '../assets/chat.png';
 import profile from '../assets/profile.png';
 import { useNavigate } from 'react-router-dom';
-import '../Main/Main.css';
+// import '../Main/Main.css';
 
 
 export default function Main() {
