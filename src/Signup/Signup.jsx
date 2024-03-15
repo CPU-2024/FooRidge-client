@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; 
 import '../Signup/Signup.css'
-import { FaChevronLeft   } from "react-icons/fa";
+import { FaChevronLeft } from "react-icons/fa";
 import axios from 'axios';
 
 const EmailInput = ({ onEmailChange }) => {
@@ -38,6 +38,8 @@ const EmailInput = ({ onEmailChange }) => {
     onEmailChange(suggestion);
   };
 
+  
+
   return (
     <>
       <input
@@ -58,7 +60,7 @@ const EmailInput = ({ onEmailChange }) => {
 
 const Signup = () => {
 
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Using useNavigate hook
   const [userEmail, setEmail] = useState("");
   const [userPassword, setPassword] = useState("");
   const [ConfirmPassword, setConfirmPassword] = useState("");
@@ -142,34 +144,35 @@ const Signup = () => {
       alert('6~20글자/대문자, 소문자, 숫자, 특수문자 중 2가지 이상을 조합해 주세요.');
       return;
     }
-
-    // alert("회원가입에 성공하였습니다.");
-
   };
 
-  const handleJoinClick=async()=>{
-    const newUser={userName,userEmail,userPassword}
-    try{
-      const response=await axios.post('http://localhost:8080/user',newUser)
-      if(response.status===201){
-         alert('회원가입을 성공하셨습니다')
-         const {userId}=response.data;
-         navigate(`/location/${userId}`)
-         console.log("Nickname:", userName);
-         console.log("Password:", userPassword);
-         console.log("Email:", userEmail);
-         //navigate('/location');
+  const handleJoinClick = async () => {
+    const newUser = { userName, userEmail, userPassword }
+    try {
+      const response = await axios.post('http://localhost:8080/user', newUser)
+      if (response.status === 201) {
+        alert('회원가입을 성공하셨습니다')
+        const { userId } = response.data;
+        navigate(`/location/${userId}`);
+        console.log("Nickname:", userName);
+        console.log("Password:", userPassword);
+        console.log("Email:", userEmail);
       }
-    }catch(error){
+    } catch (error) {
       alert('회원가입을 실패하셨습니다')
       console.log(error)
     }
+
+    const goBack = (event) => {
+      navigate('/');
+    };
 
   }
   return (
     <div>
       <div className="header">
-        <FaChevronLeft></FaChevronLeft><p>회원가입</p>
+        <button onClick={() => navigate(-1)}><FaChevronLeft/></button> 
+        <p>회원가입</p>
       </div>
       <hr />
       <form style={{ display: 'flex', flexDirection: 'column' }} onSubmit={onSubmitHandler}>
@@ -195,7 +198,7 @@ const Signup = () => {
           <button onClick={handleJoinClick} className='join' type='submit'>가입하기</button>
         </div>
       </form>
-      
+
     </div>
   );
 };

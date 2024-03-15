@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import '../Signin/Signin.css';
 
@@ -8,6 +9,7 @@ export default function Signin() {
 
   const [userEmail, setEmail] = useState("");
   const [userPassword, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const onEmailHandler = (event) => {
     setEmail(event.currentTarget.value);
@@ -30,6 +32,7 @@ export default function Signin() {
       const response=await axios.post('http://localhost:8080/user/login',loggedUser)
       if(response.status===200){
         alert('로그인 성공')
+        navigate('/main');
       }
     }catch(error){
         alert('로그인 실패')
