@@ -25,7 +25,7 @@ export default function Signin() {
   };
 
   const handleLogin=async()=>{
-    const loggedUser={userEmail,userPassword} 
+    const loggedUser={userEmail,userPassword}
     try{
       const response=await axios.post('http://localhost:8080/user/login',loggedUser)
       if(response.status===200){
