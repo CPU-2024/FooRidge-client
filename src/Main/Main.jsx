@@ -25,9 +25,17 @@ export default function Main() {
   const navigate = useNavigate();
 
   const handleMore = () => {
-    navigate(''); // 회원가입 페이지로 이동
+    navigate(''); //더 보기 버튼을 눌렀을 때
   };
+
+  const handlePlusButtonClick= () =>{
+    navigate('/post')
+  }
   
+
+  const handelHomeButtonClick = () =>{
+    navigate('/home')
+  }
   const aboutImages = [about, about2, about3, about4, about5, about6];
 
   return (
@@ -77,9 +85,9 @@ export default function Main() {
                 </button>
               </div>
               <div className='bottom_bar'>
-                    <IoHomeOutline size='25'/>
+                    <IoHomeOutline size='25' onClick={handelHomeButtonClick}/>
                     <IoMdSearch size='25'/>
-                    <AiFillPlusCircle size='25' color='#3faf43'/>
+                    <AiFillPlusCircle size='25' color='#3faf43' onClick={handlePlusButtonClick}/>
                     <IoChatbubblesOutline size='25'/>
                     <CgProfile size='25'/>
               </div>

@@ -153,6 +153,8 @@ const Signup = () => {
       if (response.status === 201) {
         alert('회원가입을 성공하셨습니다')
         const { userId } = response.data;
+
+        // id값을 나중에 써야하기 때문에 템플릿으로 불러오기
         navigate(`/location/${userId}`);
         console.log("Nickname:", userName);
         console.log("Password:", userPassword);
@@ -162,10 +164,6 @@ const Signup = () => {
       alert('회원가입을 실패하셨습니다')
       console.log(error)
     }
-
-    const goBack = (event) => {
-      navigate('/');
-    };
 
   }
   return (
@@ -198,7 +196,6 @@ const Signup = () => {
           <button onClick={handleJoinClick} className='join' type='submit'>가입하기</button>
         </div>
       </form>
-
     </div>
   );
 };
