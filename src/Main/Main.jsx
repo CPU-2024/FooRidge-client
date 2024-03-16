@@ -25,8 +25,12 @@ export default function Main() {
   const navigate = useNavigate();
 
   const handleMore = () => {
-    navigate(''); // 회원가입 페이지로 이동
+    navigate(''); // 더보기 페이지로 이동
   };
+
+  const handleMypageClick = () => {
+    navigate('/mypage');
+  }
   
   const aboutImages = [about, about2, about3, about4, about5, about6];
 
@@ -81,7 +85,7 @@ export default function Main() {
                     <IoMdSearch size='25'/>
                     <AiFillPlusCircle size='25' color='#3faf43'/>
                     <IoChatbubblesOutline size='25'/>
-                    <CgProfile size='25'/>
+                    <CgProfile size='25' onClick={handleMypageClick}/>
               </div>
         </div>
     </div>
