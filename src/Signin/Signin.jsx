@@ -1,12 +1,15 @@
+import axios from 'axios';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import '../Signin/Signin.css';
 
 
 export default function Signin() {
 
-  const [Email, setEmail] = useState("");
-  const [Password, setPassword] = useState("");
+  const [userEmail, setEmail] = useState("");
+  const [userPassword, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const onEmailHandler = (event) => {
     setEmail(event.currentTarget.value);
@@ -19,10 +22,23 @@ export default function Signin() {
   const onSubmitHandler = (event) => {
     event.preventDefault();
 
-    console.log("Email:", Email);
-    console.log("Password:", Password);
+    console.log("Email:", userEmail);
+    console.log("Password:", userPassword);
   };
 
+  const handleLogin=async()=>{
+    const loggedUser={userEmail,userPassword}
+    try{
+      const response=await axios.post('http://localhost:8080/user/login',loggedUser)
+      if(response.status===200){
+        alert('로그인 성공')
+        navigate('/main');
+      }
+    }catch(error){
+        alert('로그인 실패')
+        console.log(error)
+    }
+  }
   return (
     <div>
       <Logo />
@@ -31,12 +47,12 @@ export default function Signin() {
       </div>
       <form style={{ display: 'flex', flexDirection: 'column'}} onSubmit={onSubmitHandler}>
         <div className="input">
-            <input type='email' value={Email} onChange={onEmailHandler} placeholder="이메일" />
-            <input type='password' value={Password} onChange={onPasswordHandler} placeholder="비밀번호" />
+            <input type='email' value={userEmail} onChange={onEmailHandler} placeholder="이메일" />
+            <input type='password' value={userPassword} onChange={onPasswordHandler} placeholder="비밀번호" />
         </div>
         <br />
         <div className="loginbutton">
-          <button className='login' type='submit'>로그인</button>
+          <button className='login' onClick={handleLogin} type='submit'>로그인</button>
         </div>
       </form>
     </div>

@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom'; // Navigate 추가
 import Signup from './Signup/Signup';
 import SignupSignin from './Signinup/SignupSignin';
 import Signin from './Signin/Signin';

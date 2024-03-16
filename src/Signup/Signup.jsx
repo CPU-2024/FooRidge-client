@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; 
 import '../Signup/Signup.css'
-import { FaChevronLeft   } from "react-icons/fa";
+import { FaChevronLeft } from "react-icons/fa";
+import axios from 'axios';
 
 const EmailInput = ({ onEmailChange }) => {
   const [emailValue, setEmailValue] = useState("");
@@ -37,6 +38,8 @@ const EmailInput = ({ onEmailChange }) => {
     onEmailChange(suggestion);
   };
 
+  
+
   return (
     <>
       <input
@@ -57,12 +60,11 @@ const EmailInput = ({ onEmailChange }) => {
 
 const Signup = () => {
 
-  const navigate = useNavigate();
-  const [Email, setEmail] = useState("");
-  const [Password, setPassword] = useState("");
+  const navigate = useNavigate(); // Using useNavigate hook
+  const [userEmail, setEmail] = useState("");
+  const [userPassword, setPassword] = useState("");
   const [ConfirmPassword, setConfirmPassword] = useState("");
-  const [Nickname, setNickname] = useState("");
-  const [Address, setAddress] = useState("");
+  const [userName, setNickname] = useState("");
   const [isNicknameAvailable, setIsNicknameAvailable] = useState(true);
   const [passwordValidation, setPasswordValidation] = useState({
     length: false,
@@ -113,11 +115,6 @@ const Signup = () => {
     setIsFocused(true);
   };
 
-  const onAddressHandler = (event) => {
-    setAddress(event.currentTarget.value);
-    setIsFocused(true);
-  };
-
   const checkNicknameAvailability = async () => {
     // 닉네임 중복 확인 로직
   };
@@ -137,35 +134,51 @@ const Signup = () => {
     }
 
     // 비밀번호 확인
-    if (Password !== ConfirmPassword) {
+    if (userPassword !== ConfirmPassword) {
       alert('비밀번호가 일치하지 않습니다.');
       return;
     }
 
     // 비밀번호 유효성 검사
-    if (!validatePassword(Password)) {
+    if (!validatePassword(userPassword)) {
       alert('6~20글자/대문자, 소문자, 숫자, 특수문자 중 2가지 이상을 조합해 주세요.');
       return;
     }
-
-    // alert("회원가입에 성공하였습니다.");
-    console.log("Nickname:", Nickname);
-    console.log("Address:", Address);
-    console.log("Password:", Password);
-    console.log("Email:", Email);
-    navigate('/location');
   };
 
+  const handleJoinClick = async () => {
+    const newUser = { userName, userEmail, userPassword }
+    try {
+      const response = await axios.post('http://localhost:8080/user', newUser)
+      if (response.status === 201) {
+        alert('회원가입을 성공하셨습니다')
+        const { userId } = response.data;
+        navigate(`/location/${userId}`);
+        console.log("Nickname:", userName);
+        console.log("Password:", userPassword);
+        console.log("Email:", userEmail);
+      }
+    } catch (error) {
+      alert('회원가입을 실패하셨습니다')
+      console.log(error)
+    }
+
+    const goBack = (event) => {
+      navigate('/');
+    };
+
+  }
   return (
     <div>
       <div className="header">
-        <FaChevronLeft></FaChevronLeft><p>회원가입</p>
+        <button onClick={() => navigate(-1)}><FaChevronLeft/></button> 
+        <p>회원가입</p>
       </div>
       <hr />
       <form style={{ display: 'flex', flexDirection: 'column' }} onSubmit={onSubmitHandler}>
         <div className="signupinput">
           <label>닉네임</label><br />
-          <input className='nickname' type='text' value={Nickname} onChange={onNicknameHandler} placeholder="닉네임" />
+          <input className='nickname' type='text' value={userName} onChange={onNicknameHandler} placeholder="닉네임" />
           <button className='check' type='button' onClick={checkNicknameAvailability}>중복확인</button>
           {!isNicknameAvailable && <p className="nickname-error">이미 사용 중인 닉네임입니다.</p>}<br />
           <div className="email">
@@ -174,7 +187,7 @@ const Signup = () => {
           </div>
           <div className="password">
             <label>비밀번호</label><br />
-            <input type='password' value={Password} onChange={onPasswordHandler} placeholder="비밀번호" />
+            <input type='password' value={userPassword} onChange={onPasswordHandler} placeholder="비밀번호" />
             <input type='password' value={ConfirmPassword} onChange={onConfirmPasswordHandler} placeholder="비밀번호 확인" /><br />
             <p className='passwordcondition'>6~20글자/대문자,소문자,숫자,특수문자 중 2가지 이상 조합</p>
           </div>
@@ -182,9 +195,10 @@ const Signup = () => {
         </div>
         <br />
         <div className="loginbutton">
-          <button className='join' type='submit'>가입하기</button>
+          <button onClick={handleJoinClick} className='join' type='submit'>가입하기</button>
         </div>
       </form>
+
     </div>
   );
 };
