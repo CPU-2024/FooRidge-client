@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import '../Location/location.css';
-import { FaChevronLeft   } from "react-icons/fa";
+import { FaChevronLeft } from "react-icons/fa";
 import axios from 'axios'
 import { useParams } from "react-router-dom";
 
 
 const Location = () => {
     const { userId } = useParams();
-    const [userAddress,setUserAddress]=useState("");
+    const [userAddress, setUserAddress] = useState("");
+    const navigate = useNavigate();
     const [state, setState] = useState({
         center: { lat: 37.365264512305174, lng: 127.10676860117488 },
         userLocation: null
@@ -89,9 +91,10 @@ const Location = () => {
         if (state.userLocation) {
             console.log("Saved Location:", state.userLocation);
             try {
-                const response = await axios.patch(`http://localhost:8080/user/${userId}/location`,state.userLocation);
+                const response = await axios.patch(`http://localhost:8080/user/${userId}/location`, state.userLocation);
                 if (response.status === 200) {
                     alert('회원님의 현재 위치가 수정되었습니다.');
+                    navigate('/main')
                 }
             } catch (error) {
                 alert('현재 위치 수정에 실패하였습니다.');
@@ -104,8 +107,9 @@ const Location = () => {
 
     return (
         <div className="location">
-           <div className="header">
-             <FaChevronLeft></FaChevronLeft><p>회원가입</p>
+            <div className="header">
+            <button onClick={() => navigate(-1)}><FaChevronLeft/></button> 
+            <p>회원가입</p>
             </div>
             <hr />
             <div className="map" id="map" style={{ width: "328px", height: "450px" }}></div>
