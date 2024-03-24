@@ -25,13 +25,25 @@ export default function Main() {
   const navigate = useNavigate();
 
   const handleMore = () => {
+<<<<<<< HEAD
     navigate(''); // 더보기 페이지로 이동
   };
 
   const handleMypageClick = () => {
     navigate('/mypage');
+=======
+    navigate(''); //더 보기 버튼을 눌렀을 때
+  };
+
+  const handlePlusButtonClick= () =>{
+    navigate('/post')
+>>>>>>> 48c73ac9ec3bec0e08aa50e89bd09b30f85aee87
   }
   
+
+  const handelHomeButtonClick = () =>{
+    navigate('/home')
+  }
   const aboutImages = [about, about2, about3, about4, about5, about6];
 
   return (
@@ -81,9 +93,9 @@ export default function Main() {
                 </button>
               </div>
               <div className='bottom_bar'>
-                    <IoHomeOutline size='25'/>
+                    <IoHomeOutline size='25' onClick={handelHomeButtonClick}/>
                     <IoMdSearch size='25'/>
-                    <AiFillPlusCircle size='25' color='#3faf43'/>
+                    <AiFillPlusCircle size='25' color='#3faf43' onClick={handlePlusButtonClick}/>
                     <IoChatbubblesOutline size='25'/>
                     <CgProfile size='25' onClick={handleMypageClick}/>
               </div>

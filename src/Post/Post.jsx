@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import '../Post/Post.css';
 import uploadIcon from '../assets/poto.png';
+import { useNavigate } from "react-router";
 import { FaChevronLeft } from "react-icons/fa";
 
 const Post = () => {
@@ -8,6 +9,7 @@ const Post = () => {
   const [selectedOption, setSelectedOption] = useState("");
   const [priceVisible, setPriceVisible] = useState(false); // New state for price visibility
   const [price, setPrice] = useState(""); // New state for price input
+  const navigate = useNavigate();
 
   // 이미지 변경
   const handleImageChange = (e) => {
@@ -43,7 +45,8 @@ const Post = () => {
   return (
     <div>
       <div className="header">
-        <FaChevronLeft></FaChevronLeft><p>나눔하기</p>
+      <button onClick={() => navigate(-1)}><FaChevronLeft/></button> 
+      <p>나눔하기</p>
       </div>
       <hr />
       <div className="post">
