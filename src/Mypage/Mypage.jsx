@@ -1,26 +1,11 @@
-import { useNavigate } from "react-router-dom";
-import { IoSettingsOutline } from "react-icons/io5";
+import React from "react";
+import BottomBar from "../Main/BottomBar";
 
-export default function Mypage(){
-    const navigate = useNavigate();
-
-
-    return(
-        <div className='page'>
-            <div className='top'>
-                <div className='setting'>
-                    <IoSettingsOutline />
-                </div>
-                <div className='profile'>
-                    <div className='photo'>
-                        
-                    </div>
-                    <div className="name">
-                        dinmoy
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-    );
+export default function Mypage() {
+    return (
+        <>
+        <h1>안녕</h1>
+            <BottomBar/>
+        </>
+    )
 }
