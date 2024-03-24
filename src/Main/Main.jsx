@@ -13,11 +13,7 @@ import dunkin from '../assets/dunkin.png';
 import bagette from '../assets/bagette.png';
 import hamberger from '../assets/hamberger.png';
 import { useNavigate } from 'react-router-dom';
-import { IoHomeOutline } from "react-icons/io5";
-import { IoMdSearch } from "react-icons/io"; 
-import { AiFillPlusCircle } from "react-icons/ai";
-import { IoChatbubblesOutline } from "react-icons/io5";
-import { CgProfile } from "react-icons/cg";
+import BottomBar from './BottomBar.jsx';
 
 import '../Main/Main.css';
 
@@ -95,11 +91,7 @@ export default function Main() {
                 ))}
               </div>
               <div className='bottom_bar'>
-                    <IoHomeOutline size='25' onClick={handelHomeButtonClick}/>
-                    <IoMdSearch size='25'/>
-                    <AiFillPlusCircle size='25' color='#3faf43' onClick={handlePlusButtonClick}/>
-                    <IoChatbubblesOutline size='25'/>
-                    <CgProfile size='25' onClick={handleMypageClick}/>
+                    <BottomBar />
               </div>
         </div>
     </div>
