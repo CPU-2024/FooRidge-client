@@ -24,26 +24,41 @@ import '../Main/Main.css';
 export default function Main() {
   const navigate = useNavigate();
 
+  const handlePlusButtonClick = () => {
+    navigate('');
+  }
+
   const handleMore = () => {
-<<<<<<< HEAD
     navigate(''); // 더보기 페이지로 이동
   };
 
   const handleMypageClick = () => {
     navigate('/mypage');
-=======
-    navigate(''); //더 보기 버튼을 눌렀을 때
-  };
-
-  const handlePlusButtonClick= () =>{
-    navigate('/post')
->>>>>>> 48c73ac9ec3bec0e08aa50e89bd09b30f85aee87
   }
-  
 
   const handelHomeButtonClick = () =>{
     navigate('/home')
   }
+
+  const stores = [
+    {
+      id: 1,
+      name: '던킨도너츠',
+      description: '도넛 나눔 합니다',
+      image: {dunkin}
+    },
+    {
+      id: 2,
+      name: '파리바게트',
+      description: '빵 남은 것 나눔 합니다'
+    },
+    {
+      id: 3,
+      name: '맥도날드',
+      description: '햄버거 10개 나눔 합니다'
+    }
+  ];
+
   const aboutImages = [about, about2, about3, about4, about5, about6];
 
   return (
@@ -70,27 +85,14 @@ export default function Main() {
                   <h5 onClick={handleMore}>더보기</h5>
               </div>
               <div className='post'>
-                <button className='dunkinButton'>
-                  <img src={dunkin} alt='Bagette' className='buttonImage' />
-                  <div className='text'>
-                    <span className='largeText'>던킨도너츠</span>
-                    <span className='smallText'>도넛 나눔 합니다</span>
-                  </div>
-                </button>
-                <button className='bagetteButton'>
-                  <img src={bagette} alt='Bagette' className='buttonImage' />
-                  <div className='text'>
-                    <span className='largeText'>파리바게트</span>
-                    <span className='smallText'>빵 남은 것 나눔 합니다</span>
-                  </div>
-                </button>
-                <button className='hambergerButton'>
-                  <img src={hamberger} alt='Hamberger' className='buttonImage' />
-                  <div className='text'>
-                    <span className='largeText'>맥도날드</span>
-                    <span className='smallText'>햄버거 10개 나눔 합니다</span>
-                  </div>
-                </button>
+                {stores.map(store => (
+                  <button key={store.id} className='storeButton'>
+                    <div className='text'>
+                      <span className='largeText'>{store.name}</span>
+                      <span className='smallText'>{store.description}</span>
+                    </div>
+                  </button>
+                ))}
               </div>
               <div className='bottom_bar'>
                     <IoHomeOutline size='25' onClick={handelHomeButtonClick}/>
