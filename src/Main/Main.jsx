@@ -10,31 +10,18 @@ import about6 from '../assets/About6.png';
 import share from '../assets/share.png';
 import low_price from '../assets/low price.png';
 import dunkin from '../assets/dunkin.png';
-import bagette from '../assets/bagette.png';
-import hamberger from '../assets/hamberger.png';
 import { useNavigate } from 'react-router-dom';
-import BottomBar from './BottomBar.jsx';
+import BottomBar from './BottomBar';
 
 import '../Main/Main.css';
 
 export default function Main() {
   const navigate = useNavigate();
 
-  const handlePlusButtonClick = () => {
-    navigate('');
-  }
 
   const handleMore = () => {
     navigate(''); // 더보기 페이지로 이동
   };
-
-  const handleMypageClick = () => {
-    navigate('/mypage');
-  }
-
-  const handelHomeButtonClick = () =>{
-    navigate('/home')
-  }
 
   const stores = [
     {
