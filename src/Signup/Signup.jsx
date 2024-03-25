@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; 
 import '../Signup/Signup.css'
-import { FaChevronLeft   } from "react-icons/fa";
+import { FaChevronLeft } from "react-icons/fa";
 import axios from 'axios';
 
 const EmailInput = ({ onEmailChange }) => {
@@ -38,6 +38,8 @@ const EmailInput = ({ onEmailChange }) => {
     onEmailChange(suggestion);
   };
 
+  
+
   return (
     <>
       <input
@@ -58,12 +60,11 @@ const EmailInput = ({ onEmailChange }) => {
 
 const Signup = () => {
 
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Using useNavigate hook
   const [userEmail, setEmail] = useState("");
   const [userPassword, setPassword] = useState("");
   const [ConfirmPassword, setConfirmPassword] = useState("");
   const [userName, setNickname] = useState("");
-  const [userAddress, setAddress] = useState("");
   const [isNicknameAvailable, setIsNicknameAvailable] = useState(true);
   const [passwordValidation, setPasswordValidation] = useState({
     length: false,
@@ -114,11 +115,6 @@ const Signup = () => {
     setIsFocused(true);
   };
 
-  const onAddressHandler = (event) => {
-    setAddress(event.currentTarget.value);
-    setIsFocused(true);
-  };
-
   const checkNicknameAvailability = async () => {
     // 닉네임 중복 확인 로직
   };
@@ -148,11 +144,9 @@ const Signup = () => {
       alert('6~20글자/대문자, 소문자, 숫자, 특수문자 중 2가지 이상을 조합해 주세요.');
       return;
     }
-
-    // alert("회원가입에 성공하였습니다.");
-
   };
 
+<<<<<<< HEAD
   const handleJoinClick=async()=>{
     const newUser={userName,userEmail,userPassword}
     try{
@@ -164,9 +158,24 @@ const Signup = () => {
          console.log("Password:", userPassword);
          console.log("Email:", userEmail);
          navigate('/location');
+=======
+  const handleJoinClick = async () => {
+    const newUser = { userName, userEmail, userPassword }
+    try {
+      const response = await axios.post('http://localhost:8080/user', newUser)
+      if (response.status === 201) {
+        alert('회원가입을 성공하셨습니다')
+        const { userId } = response.data;
+
+        // id값을 나중에 써야하기 때문에 템플릿으로 불러오기
+        navigate(`/location/${userId}`);
+        console.log("Nickname:", userName);
+        console.log("Password:", userPassword);
+        console.log("Email:", userEmail);
+>>>>>>> cc6aeb691acde10c602d7afa667db7ac7bb84047
       }
-    }catch(error){
-      alert('동아리 지원에 성공하였습니다')
+    } catch (error) {
+      alert('회원가입을 실패하셨습니다')
       console.log(error)
     }
 
@@ -174,7 +183,8 @@ const Signup = () => {
   return (
     <div>
       <div className="header">
-        <FaChevronLeft></FaChevronLeft><p>회원가입</p>
+        <button onClick={() => navigate(-1)}><FaChevronLeft/></button> 
+        <p>회원가입</p>
       </div>
       <hr />
       <form style={{ display: 'flex', flexDirection: 'column' }} onSubmit={onSubmitHandler}>

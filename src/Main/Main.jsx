@@ -1,16 +1,17 @@
 import React from 'react';
+import Slide from '../Main/Slide.jsx';
 import logo from '../assets/logo.png'; // 이미지 파일 경로를 맞게 수정해주세요
 import about from '../assets/About.png';
+import about2 from '../assets/About2.png';
+import about3 from '../assets/About3.png';
+import about4 from '../assets/About4.png';
+import about5 from '../assets/About5.png';
+import about6 from '../assets/About6.png';
 import share from '../assets/share.png';
 import low_price from '../assets/low price.png';
 import dunkin from '../assets/dunkin.png';
 import bagette from '../assets/bagette.png';
 import hamberger from '../assets/hamberger.png';
-import home from '../assets/carbon_home.png';
-import search from '../assets/tabler_search.png';
-import plus from '../assets/plus.png';
-import chat from '../assets/chat.png';
-import profile from '../assets/profile.png';
 import { useNavigate } from 'react-router-dom';
 // import '../Main/Main.css';
 import { IoHomeOutline } from "react-icons/io5";
@@ -25,16 +26,25 @@ export default function Main() {
   const navigate = useNavigate();
 
   const handleMore = () => {
-    navigate(''); // 회원가입 페이지로 이동
+    navigate(''); //더 보기 버튼을 눌렀을 때
   };
+
+  const handlePlusButtonClick= () =>{
+    navigate('/post')
+  }
   
+
+  const handelHomeButtonClick = () =>{
+    navigate('/home')
+  }
+  const aboutImages = [about, about2, about3, about4, about5, about6];
 
   return (
     <div className='main'>
       <h2>FOORIDGE</h2>
         <div className='page'>
               <div className='adver'>
-                <About />
+                <Slide images={aboutImages} />
               </div>
               <div className='main_button'>
                 <button className='share'>
@@ -76,9 +86,9 @@ export default function Main() {
                 </button>
               </div>
               <div className='bottom_bar'>
-                    <IoHomeOutline size='25'/>
+                    <IoHomeOutline size='25' onClick={handelHomeButtonClick}/>
                     <IoMdSearch size='25'/>
-                    <AiFillPlusCircle size='25'/>
+                    <AiFillPlusCircle size='25' color='#3faf43' onClick={handlePlusButtonClick}/>
                     <IoChatbubblesOutline size='25'/>
                     <CgProfile size='25'/>
               </div>
@@ -87,12 +97,5 @@ export default function Main() {
   );
 }
 
-function About() {
-  return (
-    <div className='About'>
-      {/* 이미지를 추가합니다 */}
-      <img src={about} alt="About" />
-    </div>
-  );
-}
+
 
