@@ -158,7 +158,7 @@ const Signup = () => {
     try{
       const response=await axios.post('http://localhost:8080/user',newUser)
       if(response.status===201){
-         alert('동아리 지원을 완료하였습니다')
+         alert('회원가입을 완료하였습니다')
          console.log("Nickname:", userName);
          console.log("Address:", userAddress);
          console.log("Password:", userPassword);

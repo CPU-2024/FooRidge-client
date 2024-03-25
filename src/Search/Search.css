@@ -1,0 +1,38 @@
+*{
+    margin: 0;
+}
+.search{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+.searchbar{
+    width: 297px;
+    height:47px;
+    border-radius: 10px;
+    background-color:rgb(230, 230, 230);
+}
+.search>.searchIcons{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-column-gap: 50px;
+    margin-top: 20px;
+    text-align: center;
+
+}
+.searchIcon{
+    margin-bottom: 20px;
+}
+.searchIcon span{
+    font-size: 12px;
+}
+.searchLocation{
+    text-align: center;
+}
+.searchLocation>.map{
+    margin-bottom: 10px;
+}
+.searchLocation>.locationButton{
+    background-color: #3faf43; border-radius: 5px; border: none; color: #fff;
+}

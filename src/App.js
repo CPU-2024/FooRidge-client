@@ -5,6 +5,7 @@ import Signin from './Signin/Signin';
 import Location from './Location/location';
 import Main from './Main/Main';
 import Post from './Post/Post';
+import Search from './Search/Search';
 function App() {
   return (
     <Router>
@@ -15,6 +16,7 @@ function App() {
       <Route path='/location/:userId' element={<Location/>}/>
       <Route path='/main' element={<Main/>}/>
       <Route path='/post' element={<Post/>}/>
+      <Route path='/search' element={<Search/>}/>
     </Routes>
   </Router>
   // <Location />
