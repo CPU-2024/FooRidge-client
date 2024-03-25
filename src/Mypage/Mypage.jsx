@@ -8,8 +8,6 @@ import Profile from './Profile';
 import '../Mypage/Mypage.css';
 
 export default function Mypage(){
-
-
     
     const navigate = useNavigate();
 
