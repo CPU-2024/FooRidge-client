@@ -146,19 +146,6 @@ const Signup = () => {
     }
   };
 
-<<<<<<< HEAD
-  const handleJoinClick=async()=>{
-    const newUser={userName,userEmail,userPassword}
-    try{
-      const response=await axios.post('http://localhost:8080/user',newUser)
-      if(response.status===201){
-         alert('회원가입을 완료하였습니다')
-         console.log("Nickname:", userName);
-         console.log("Address:", userAddress);
-         console.log("Password:", userPassword);
-         console.log("Email:", userEmail);
-         navigate('/location');
-=======
   const handleJoinClick = async () => {
     const newUser = { userName, userEmail, userPassword }
     try {
@@ -172,7 +159,6 @@ const Signup = () => {
         console.log("Nickname:", userName);
         console.log("Password:", userPassword);
         console.log("Email:", userEmail);
->>>>>>> cc6aeb691acde10c602d7afa667db7ac7bb84047
       }
     } catch (error) {
       alert('회원가입을 실패하셨습니다')
