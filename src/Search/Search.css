@@ -33,6 +33,3 @@
 .searchLocation>.map{
     margin-bottom: 10px;
 }
-.searchLocation>.locationButton{
-    background-color: #3faf43; border-radius: 5px; border: none; color: #fff;
-}
