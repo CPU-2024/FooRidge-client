@@ -70,3 +70,7 @@ body {
     color: #fff;
     margin-top: 40px;
   }
+  .header>button{
+    background-color: #fff;
+    border:none;
+  }

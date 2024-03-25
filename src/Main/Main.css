@@ -62,7 +62,7 @@ body{
 }
  /* ======================================= 텍스트 끝*/
 
-.post {
+.page>.post {
     display: flex;
     flex-direction:column;
     align-items: center; 
@@ -70,7 +70,7 @@ body{
     margin-top: -100px;
   }
   
-  .post button {
+ .page> .post button {
     background-color: white;
     color: white;
     font-weight: 0;
@@ -87,14 +87,14 @@ body{
     
   }
 
-  .post img {
+  .page>.post img {
     max-width: 50px;
     max-height: 50px; 
     margin-right: 5px; 
     
   }
   
-  .post .text .largeText {
+  .page>.post .text .largeText {
     font-size: 15px; 
     color: #3faf43;
     font-weight: bold;
@@ -102,7 +102,7 @@ body{
     text-align: left;
   }
   
-  .post .text .smallText {
+  .page>.post .text .smallText {
     color: gray;
     font-size: 12px; 
     margin-left: 10px;

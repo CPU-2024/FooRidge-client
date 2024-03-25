@@ -5,6 +5,7 @@ import Signin from './Signin/Signin';
 import Location from './Location/location';
 import Main from './Main/Main';
 import Post from './Post/Post';
+import Search from './Search/Search';
 import Mypage from './Mypage/Mypage';
 function App() {
   return (
@@ -16,10 +17,10 @@ function App() {
       <Route path='/location' element={<Location/>}/>
       <Route path='/main' element={<Main/>}/>
       <Route path='/post' element={<Post/>}/>
+      <Route path='/search' element={<Search/>}/>
       <Route path='/mypage' element={<Mypage/>}/>
     </Routes>
   </Router>
-  // <Location />
   );
 }
 
