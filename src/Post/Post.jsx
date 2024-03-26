@@ -3,12 +3,16 @@ import '../Post/Post.css';
 import uploadIcon from '../assets/poto.png';
 import { useNavigate } from "react-router";
 import { FaChevronLeft } from "react-icons/fa";
+import axios from "axios";
 
 const Post = () => {
   const [selectedImages, setSelectedImages] = useState([]);
   const [selectedOption, setSelectedOption] = useState("");
   const [priceVisible, setPriceVisible] = useState(false); // New state for price visibility
-  const [price, setPrice] = useState(""); // New state for price input
+  const [postTitle, setTitle] = useState(""); // New state for price input
+  const [tradeMethod, setTradeMethod] = useState(""); // New state for price input
+  const [postContent, setContent] = useState(""); // New state for price input
+  const [price, setPrice] = useState(""); 
   const navigate = useNavigate();
 
   // 이미지 변경
@@ -42,6 +46,18 @@ const Post = () => {
     }
   };
 
+  const handlePost=async()=>{
+    const post={postTitle,tradeMethod,price,postContent}
+    try{
+      const response=await axios.post('http://localhost:8080/post',post)
+      if(response.status===201){
+        alert('글 등록 성공')
+      }
+    }catch(error){
+      alert('글 등록 실패')
+      console.log(error)
+    }
+  }
   return (
     <div>
       <div className="header">
@@ -65,14 +81,14 @@ const Post = () => {
       </div>
       <div className="postdetail">
         <label>제목</label><br />
-        <input type="text" placeholder="제목" /><br />
+        <input type="text" placeholder="제목" value={postTitle} onChange={(e) => setTitle(e.target.value)} /><br />
         <label>거래 방식</label><br />
         <button
           className={selectedOption === "sale" ? "selected-button" : ""}
-          onClick={() => handleButtonClick("sale")}>판매</button>
+          onClick={() => handleButtonClick("sale")} value="판매" onChange={(e) => setTradeMethod(e.target.value)}>판매</button>
         <button
           className={selectedOption === "donation" ? "selected-button" : ""}
-          onClick={() => handleButtonClick("donation")}>기부</button><br />
+          onClick={() => handleButtonClick("donation")}value="가부"  onChange={(e) => setTradeMethod(e.target.value)}>기부</button><br />
 
         {/*가격*/}
         {priceVisible && (
@@ -82,9 +98,9 @@ const Post = () => {
           </>
         )}
         <label>자세한 설명</label><br />
-        <textarea className="postexplanation" rows="7" placeholder="자세한 설명을 입력하세요."></textarea>
+        <textarea className="postexplanation" rows="7" placeholder="자세한 설명을 입력하세요." value={postContent} onChange={(e) => setContent(e.target.value)} ></textarea>
         <div className="registration">
-            <button>등록하기</button>
+            <button onClick={handlePost} type='submit'>등록하기</button>
         </div>
       </div>
     </div>
