@@ -6,7 +6,7 @@ import { FaChevronLeft } from "react-icons/fa";
 import axios from "axios";
 
 const Post = () => {
-  const [selectedImages, setSelectedImages] = useState([]);
+  const [file, setfile] = useState([]);
   const [selectedOption, setSelectedOption] = useState("");
   const [priceVisible, setPriceVisible] = useState(false); // New state for price visibility
   const [postTitle, setTitle] = useState(""); // New state for price input
@@ -16,24 +16,28 @@ const Post = () => {
   const navigate = useNavigate();
 
   // 이미지 변경
+  // const handleImageChange = (e) => {
+  //   const files = e.target.files;
+
+  //   if (files) {
+  //     const newImages = Array.from(files).map((file) => {
+  //       const reader = new FileReader();
+
+  //       //file 업데이트
+  //       reader.onloadend = () => {
+  //         setfile((prevImages) => [...prevImages, reader.result]);
+  //       };
+
+  //       // 파일읽기
+  //       reader.readAsDataURL(file);
+
+  //       return file;
+  //     });
+  //   }
+  // };
+
   const handleImageChange = (e) => {
-    const files = e.target.files;
-
-    if (files) {
-      const newImages = Array.from(files).map((file) => {
-        const reader = new FileReader();
-
-        //selectedImages 업데이트
-        reader.onloadend = () => {
-          setSelectedImages((prevImages) => [...prevImages, reader.result]);
-        };
-
-        // 파일읽기
-        reader.readAsDataURL(file);
-
-        return file;
-      });
-    }
+    setfile(e.target.files[0]); 
   };
 
   // 버튼 색상변경, 가격 input 표시
@@ -46,18 +50,30 @@ const Post = () => {
     }
   };
 
-  const handlePost=async()=>{
-    const post={postTitle,tradeMethod,price,postContent}
-    try{
-      const response=await axios.post('http://localhost:8080/post',post)
-      if(response.status===201){
-        alert('글 등록 성공')
+  const handlePost = async () => {
+    try {
+      const formData = new FormData(); 
+      formData.append('postTitle', postTitle); 
+      formData.append('tradeMethod', tradeMethod); 
+      formData.append('price', price); 
+      formData.append('postContent', postContent); 
+      formData.append('file', file); 
+      
+      const response = await axios.post('http://localhost:8080/post', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data' 
+        }
+      });
+      
+      if (response.status === 201) {
+        alert('글 등록 성공');
       }
-    }catch(error){
-      alert('글 등록 실패')
-      console.log(error)
+    } catch (error) {
+      alert('글 등록 실패');
+      console.log(error);
     }
   }
+
   return (
     <div>
       <div className="header">
@@ -73,11 +89,11 @@ const Post = () => {
         </label>
 
         {/*미리보기*/}
-        {selectedImages.map((image, index) => (
+        {/* {file.map((image, index) => (
           <div key={index} className="image-preview-container">
             <img src={image} alt={`Preview ${index}`} className="image-preview" />
           </div>
-        ))}
+        ))} */}
       </div>
       <div className="postdetail">
         <label>제목</label><br />
