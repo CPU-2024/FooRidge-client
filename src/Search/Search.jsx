@@ -1,12 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import '../Search/Search.css';
 import fastfoodIcon from '../assets/fastfoodIcon.png'; import cafeIcon from '../assets/cafeIcon.png'; import restaurantIcon from '../assets/restaurantIcon.png';
 import fruitIcon from '../assets/fruitIcon.png'; import marketIcon from '../assets/marketIcon.png'; import petIcon from '../assets/petIcon.png';
 import paikdabang from '../assets/paikdabang.png'; import fruitstore from '../assets/fruitstore.png'; import hamberger from '../assets/hamberger.png';
 import dunkin from '../assets/dunkin.png'; import bagette from '../assets/bagette.png'; import waffleuniversity from '../assets/waffleuniversity.png';
-import { BiSearchAlt } from "react-icons/bi";
+import { BiSearchAlt } from "react-icons/bi"; import { BsBookmark } from "react-icons/bs";
+import BottomBar from'../Main/BottomBar';
 
 const Search = () => {
+  const [searchTerm, setSearchTerm] = useState('');
 
   const storepost =[
     {
@@ -79,8 +81,6 @@ const Search = () => {
     };
 
     func_1();
-
-   
   }, []);
 
   const shortenDescription = (description, maxLength) => {
@@ -93,7 +93,17 @@ const Search = () => {
 
   return (
     <div className="search">
-      <div className="searchbar"><BiSearchAlt /></div><br />
+        <div className="searchbar">
+          <BiSearchAlt className="searchIcon" />
+          <input
+            type="text"
+            className="searchbarInput"
+            placeholder="검색어를 입력하세요"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+      
       <div className="searchIcons">
         <div className="searchIcon"> <img src={fastfoodIcon} ></img> <br /><span>패스트푸드</span></div>
         <div className="searchIcon"><img src={cafeIcon}></img><br /><span>카페</span></div>
@@ -106,38 +116,42 @@ const Search = () => {
         <div className="map" id="map" style={{ width: "328px", height: "150px" }}></div>
         <button className="locationButton" style={{width:"328px",height:"41px"}}>현위치 설정하기</button>
       </div>
-      <div>
-      <div className="searchdetail">
-        <p className="title">가장 가까운</p>
-        <p className="more">더보기</p>
-      </div>
+      <div className="searchfullcontents">
+        <div className="searchdetail">
+          <p className="title">가장 가까운</p>
+          <p className="more">더보기</p>
+        </div>
         {storepost.map((store, index) => (
           <div key={index} className="detailbutton">
             <button className="detail">
               <img src={store.image} alt={store.name} /><br />
               <div className="detailtext">
                 <p className="storename">{store.name}</p>
-                <p className="storedetail">{shortenDescription(store.description,20)}</p>
+                <p className="storedetail">{shortenDescription(store.description,15)}</p>
               </div>
             </button>
           </div>
         ))}
 
-      <div className="searchdetail">
-        <p className="title">가장 인기있는</p>
-        <p className="more">더보기</p>
-      </div>
-      {famousstore.map((store, index) => (
+        <div className="searchdetail">
+          <p className="title">가장 인기있는</p>
+          <p className="more">더보기</p>
+        </div>
+        {famousstore.map((store, index) => (
           <div key={index} className="detailbutton">
             <button className="detail">
               <img src={store.image} alt={store.name} /><br />
               <div className="detailtext">
                 <p className="storename">{store.name}</p>
-
               </div>
+              <div className="bookmark"><BsBookmark /></div>
             </button>
           </div>
         ))}
+        
+        <div className='bottom_bar'>
+          <BottomBar />
+        </div>
       </div>
     </div>
   );
