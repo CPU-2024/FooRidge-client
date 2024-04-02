@@ -9,22 +9,35 @@
     margin-top: 30px;
     overflow-y: auto; /* 세로 스크롤 가능하도록 설정 */
     max-height:95vh; /* 최대 높이 설정 (화면 높이의 80%) */
+
 }
 
-.searchbar {
+.search>.searchbar {
     display: flex;
     align-items: center;
     width: 310px;
-    height: 43px;
-    padding:10px 0 10px 0;
+    height: 23px;
+    padding:10px 0;
     border-radius: 10px;
     background-color: rgb(230, 230, 230);
+    margin-bottom: 20px;
 }
+.searchbar input {
+    flex: 1;
+    border: none;
+    outline: none; 
+    background: none; 
+    margin-left: 10px; 
+    font-size: 14px;
+    margin-top: 0px;
+    
+  }
 .searchbar svg {
     width: 20px; 
     height: 20px;
     margin-right: 10px; 
-    margin-left: 10px;
+    margin-left: 15px;
+    margin-top: 20px;
 }
 
 .search > .searchIcons {
@@ -89,6 +102,7 @@
     border-radius: 5px; border: none;
     margin-top: 10px;
     margin-bottom: 10px;
+    padding-right: 20px;
 }
 
 .detailbutton > .detail img {
@@ -97,4 +111,13 @@
  .storename{
     color: #3FAF43;
     font-weight: 800;
+    text-align: left;
+}
+.bookmark{
+    margin-left: auto;
+    width: 25px; height: auto;
+    color: #3FAF43;
+}
+.searchfullcontents{
+    margin-bottom: 40px;
 }
