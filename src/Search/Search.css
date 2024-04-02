@@ -1,35 +1,123 @@
-*{
+* {
     margin: 0;
 }
-.search{
+
+.search {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20px;
-}
-.searchbar{
-    width: 297px;
-    height:47px;
-    border-radius: 10px;
-    background-color:rgb(230, 230, 230);
-}
-.search>.searchIcons{
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    grid-column-gap: 50px;
-    margin-top: 20px;
-    text-align: center;
+    margin-top: 30px;
+    overflow-y: auto; /* 세로 스크롤 가능하도록 설정 */
+    max-height:95vh; /* 최대 높이 설정 (화면 높이의 80%) */
 
 }
-.searchIcon{
+
+.search>.searchbar {
+    display: flex;
+    align-items: center;
+    width: 310px;
+    height: 23px;
+    padding:10px 0;
+    border-radius: 10px;
+    background-color: rgb(230, 230, 230);
     margin-bottom: 20px;
 }
-.searchIcon span{
-    font-size: 12px;
+.searchbar input {
+    flex: 1;
+    border: none;
+    outline: none; 
+    background: none; 
+    margin-left: 10px; 
+    font-size: 14px;
+    margin-top: 0px;
+    
+  }
+.searchbar svg {
+    width: 20px; 
+    height: 20px;
+    margin-right: 10px; 
+    margin-left: 15px;
+    margin-top: 20px;
 }
-.searchLocation{
+
+.search > .searchIcons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 50px;
+    margin-top: 7px;
     text-align: center;
 }
-.searchLocation>.map{
+
+.searchIcon {
+    margin-bottom: 20px;
+}
+
+.searchIcon span {
+    font-size: 12px;
+}
+
+.searchLocation {
+    text-align: center;
+}
+
+.searchLocation > .map {
+    margin: 0;
     margin-bottom: 10px;
+}
+
+.searchLocation > .locationButton {
+    background-color:#3FAF43; border: none; border-radius: 5px; color: #fff;
+}
+
+.searchdetail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: calc(100% - 20px);
+    padding: 0 10px;
+    margin-top: 40px;
+}
+
+.searchdetail>.title{
+    font-weight: 700;
+    font-size: medium;
+    margin-bottom: 10px;
+}
+.searchdetail>.more{
+    font-size: smaller;
+    color: #3FAF43;
+}
+
+.detailbutton {
+    display: flex;
+    flex-direction: column;
+}
+.detailbutton > .detail {
+    display: flex;
+    align-items: center;
+    width: 320px;
+    height: 56px;
+    background-color: #fff;
+    box-shadow: 0px 4px 5px rgb(0,0,0,0.1);
+    border-radius: 5px; border: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-right: 20px;
+}
+
+.detailbutton > .detail img {
+    margin-right: 20px; 
+}
+ .storename{
+    color: #3FAF43;
+    font-weight: 800;
+    text-align: left;
+}
+.bookmark{
+    margin-left: auto;
+    width: 25px; height: auto;
+    color: #3FAF43;
+}
+.searchfullcontents{
+    margin-bottom: 40px;
 }
