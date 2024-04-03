@@ -1,10 +1,75 @@
-.top .setting{
+.top{
+    text-align: left;
+    margin-left: 20px;
+}
+
+.top .setting{   /* 설정 아이콘*/
     align-items: right;
     justify-content: right;
     text-align: right;
     margin-top: 57px;
-    margin-right: 17px;
+    margin-right:20px;
 }
-.top .profile {
-    margin-right: 20%;
+.top .profile { /*사진 , 닉네임*/
+    display: flex; 
+    font-size: 12px;
+}
+
+
+.recen .visit-name {
+    margin-bottom: 20px;
+}
+.recen .visit-button{
+    display: flex;
+    justify-content: space-between; 
+}
+.recen .visit-button button {
+    width: 65px;
+    height: 65px;
+    border-radius: 10px;
+    border-style: none;
+    flex-shrink: 0;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(7, 7, 7, 0.5);
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+
+.myfooridge .fooridge-name {
+    margin-top: 20px;
+    /* margin-left: 20px; */
+}
+
+.myfooridge .fooridge-button button{
+    width: 323px ;
+    height: 87px;
+    margin-top: 20px;
+    border-radius: 10px;
+    border-style: none;
+    cursor: pointer;
+    /* margin-left: 20px; */
+}
+
+.top hr {
+    width: 320px;
+    /* text-align: right; */
+}
+
+
+.bookmark-bar .bookmark-name{
+    font-size: 15px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+.bookmark-bar .bookmark-button button {
+    display: flex;
+    width: 300px;
+    height: 65px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    background-color: white;
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: black;
+    cursor: pointer;
 }
