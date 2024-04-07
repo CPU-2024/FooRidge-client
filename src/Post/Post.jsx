@@ -1,37 +1,35 @@
-import React, { useState } from "react";
-import '../Post/Post.css';
+import React, { useState, useEffect } from 'react';
+import './Post.css';
 import uploadIcon from '../assets/poto.png';
-import { useNavigate } from "react-router";
-import { FaChevronLeft } from "react-icons/fa";
-import axios from "axios";
-
+import { useNavigate } from 'react-router';
+import { FaChevronLeft } from 'react-icons/fa';
+import axios from 'axios';
+import { GrFormSubtract } from 'react-icons/gr';
 const Post = () => {
-  const [filePaths, setFilePaths] = useState([]); 
-  const [files, setFiles] = useState([]); 
-
-  const [selectedOption, setSelectedOption] = useState("");
-  const [priceVisible, setPriceVisible] = useState(false); // New state for price visibility
-  const [postTitle, setTitle] = useState(""); // New state for price input
-  const [tradeMethod, setTradeMethod] = useState(""); // New state for price input
-  const [postContent, setContent] = useState(""); // New state for price input
-  const [price, setPrice] = useState("");
+  const [filePaths, setFilePaths] = useState([]);
+  const [files, setFiles] = useState([]);
+  const [selectedOption, setSelectedOption] = useState('');
+  const [priceVisible, setPriceVisible] = useState(false);
+  const [postTitle, setTitle] = useState('');
+  const [tradeMethod, setTradeMethod] = useState('');
+  const [postContent, setContent] = useState('');
+  const [price, setPrice] = useState('');
   const navigate = useNavigate();
 
   const handleImageChange = (e) => {
-    const files = e.target.files; 
+    const files = e.target.files;
     if (files) {
       const newFiles = Array.from(files);
-      setFiles((prevFiles) => [...prevFiles, ...newFiles]); 
+      setFiles((prevFiles) => [...prevFiles, ...newFiles]);
 
       const newFilePaths = newFiles.map((file) => URL.createObjectURL(file));
-      setFilePaths((prevPaths) => [...prevPaths, ...newFilePaths]); 
+      setFilePaths((prevPaths) => [...prevPaths, ...newFilePaths]);
     }
-  }
+  };
 
-  // 버튼 색상변경, 가격 input 표시
   const handleButtonClick = (option) => {
     setSelectedOption(option);
-    if (option === "sale") {
+    if (option === 'sale') {
       setPriceVisible(true);
     } else {
       setPriceVisible(false);
@@ -46,13 +44,13 @@ const Post = () => {
       formData.append('price', price);
       formData.append('postContent', postContent);
       files.forEach((file) => {
-        formData.append('file', file); 
+        formData.append('file', file);
       });
 
       const response = await axios.post('http://localhost:8080/post', formData, {
         headers: {
-          'Content-Type': 'multipart/form-data'
-        }
+          'Content-Type': 'multipart/form-data',
+        },
       });
 
       if (response.status === 201) {
@@ -62,51 +60,72 @@ const Post = () => {
       alert('글 등록 실패');
       console.log(error);
     }
-  }
+  };
+
+  // 이미지 삭제
+  const handleDeleteImage = (index) => {
+    const newFilePaths = [...filePaths];
+    const newFiles = [...files];
+    newFilePaths.splice(index, 1);
+    newFiles.splice(index, 1);
+    setFilePaths(newFilePaths);
+    setFiles(newFiles);
+  };
 
   return (
     <div>
       <div className="header">
-        <button onClick={() => navigate(-1)}><FaChevronLeft /></button>
+        <button onClick={() => navigate(-1)}>
+          <FaChevronLeft />
+        </button>
         <p>나눔하기</p>
       </div>
       <hr />
       <div className="post">
-        <input type="file" accept="image/*" onChange={handleImageChange} style={{ display: "none" }} id="upload-input" multiple />
-        {/* 파일입력*/}
+        <input type="file" accept="image/*" onChange={handleImageChange} style={{ display: 'none' }} id="upload-input" multiple />
         <label htmlFor="upload-input">
           <img src={uploadIcon} alt="Upload Icon" className="upload-icon" />
         </label>
 
-        {/*미리보기*/}
         {filePaths.map((image, index) => (
           <div key={index} className="image-preview-container">
             <img src={image} alt={`Preview ${index}`} className="image-preview" />
+            <div className="delete-button" onClick={() => handleDeleteImage(index)}>
+              <GrFormSubtract fontSize="large" color="error" /> {/* 수정된 부분 */}
+            </div>
           </div>
         ))}
       </div>
       <div className="postdetail">
-        <label>제목</label><br />
-        <input type="text" placeholder="제목" value={postTitle} onChange={(e) => setTitle(e.target.value)} /><br />
-        <label>거래 방식</label><br />
-        <button
-          className={selectedOption === "sale" ? "selected-button" : ""}
-          onClick={() => handleButtonClick("sale")} value="판매">판매</button>
-        <button
-          className={selectedOption === "donation" ? "selected-button" : ""}
-          onClick={() => handleButtonClick("donation")} value="가부">기부</button><br />
+        <label>제목</label>
+        <br />
+        <input type="text" placeholder="제목" value={postTitle} onChange={(e) => setTitle(e.target.value)} />
+        <br />
+        <label>거래 방식</label>
+        <br />
+        <button className={selectedOption === 'sale' ? 'selected-button' : ''} onClick={() => handleButtonClick('sale')} value="판매">
+          판매
+        </button>
+        <button className={selectedOption === 'donation' ? 'selected-button' : ''} onClick={() => handleButtonClick('donation')} value="가부">
+          기부
+        </button>
+        <br />
 
-        {/*가격*/}
         {priceVisible && (
           <>
-            <label>가격</label><br />
-            <input type="text" placeholder="가격" value={price} onChange={(e) => setPrice(e.target.value)} /><br />
+            <label>가격</label>
+            <br />
+            <input type="text" placeholder="가격" value={price} onChange={(e) => setPrice(e.target.value)} />
+            <br />
           </>
         )}
-        <label>자세한 설명</label><br />
-        <textarea className="postexplanation" rows="7" placeholder="자세한 설명을 입력하세요." value={postContent} onChange={(e) => setContent(e.target.value)} ></textarea>
+        <label>자세한 설명</label>
+        <br />
+        <textarea className="postexplanation" rows="7" placeholder="자세한 설명을 입력하세요." value={postContent} onChange={(e) => setContent(e.target.value)}></textarea>
         <div className="registration">
-          <button onClick={handlePost} type='submit'>등록하기</button>
+          <button onClick={handlePost} type="submit">
+            등록하기
+          </button>
         </div>
       </div>
     </div>

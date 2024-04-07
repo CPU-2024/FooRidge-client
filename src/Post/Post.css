@@ -8,8 +8,8 @@ body {
   
   .upload-icon,
   .image-preview {
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
     margin: 20px 12px 20px 0px;
     border-radius: 7px;
     border-color: #3FAF43;
@@ -74,3 +74,28 @@ body {
     background-color: #fff;
     border:none;
   }
+  .image-preview-container {
+    position: relative;
+  }
+  
+  .image-preview {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .delete-button {
+    position: absolute;
+    top: 17px;
+    right: 13px;
+    cursor: pointer;
+    z-index: -1;
+    opacity: 0; 
+    transition: opacity 0.3s ease; 
+    color: #447d46;
+  }
+  
+  .image-preview-container:hover .delete-button {
+    z-index: 1;
+    opacity: 1; 
+  }
+  
