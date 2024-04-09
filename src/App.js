@@ -1,16 +1,18 @@
-import { BrowserRouter as Router, Route, Routes} from 'react-router-dom'; // Navigate 추가
+import { BrowserRouter as Router, Route,Routes } from 'react-router-dom'; // Routes import 제거
 import Signup from './Signup/Signup';
 import SignupSignin from './Signinup/SignupSignin';
 import Signin from './Signin/Signin';
 import Location from './Location/location';
 import Main from './Main/Main';
-import Post from './Post/Post';
 import Search from './Search/Search';
+import Post from './Post/Post';
 import Mypage from './Mypage/Mypage';
+// import Statuspost from './Statuspost/Statuspost'; // Statuspost import 추가
+
 function App() {
   return (
     <Router>
-    <Routes> 
+      <Routes>
       <Route path="/" element={<SignupSignin />} />
       <Route path="/login" element={<Signin />} />
       <Route path="/signup" element={<Signup />} />
@@ -19,8 +21,9 @@ function App() {
       <Route path='/post' element={<Post/>}/>
       <Route path='/search' element={<Search/>}/>
       <Route path='/mypage' element={<Mypage/>}/>
-    </Routes>
-  </Router>
+      {/* <Route path='/statuspost' element={<Statuspost/>}/> Statuspost 경로 추가 */}
+      </Routes>
+    </Router>
   );
 }
 
