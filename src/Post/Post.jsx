@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './Post.css';
 import uploadIcon from '../assets/poto.png';
 import { useNavigate } from 'react-router';
 import { FaChevronLeft } from 'react-icons/fa';
 import axios from 'axios';
-import { GrFormSubtract } from 'react-icons/gr';
+import { IoMdClose } from "react-icons/io";
+
 const Post = () => {
   const [filePaths, setFilePaths] = useState([]);
   const [files, setFiles] = useState([]);
@@ -62,7 +63,6 @@ const Post = () => {
     }
   };
 
-  // 이미지 삭제
   const handleDeleteImage = (index) => {
     const newFilePaths = [...filePaths];
     const newFiles = [...files];
@@ -89,10 +89,9 @@ const Post = () => {
 
         {filePaths.map((image, index) => (
           <div key={index} className="image-preview-container">
-            <img src={image} alt={`Preview ${index}`} className="image-preview" />
             <div className="delete-button" onClick={() => handleDeleteImage(index)}>
-              <GrFormSubtract fontSize="large" color="error" /> {/* 수정된 부분 */}
             </div>
+            <img src={image} alt={`Preview ${index}`} className="image-preview" onClick={() => handleDeleteImage(index)} />
           </div>
         ))}
       </div>

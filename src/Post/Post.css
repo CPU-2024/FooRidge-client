@@ -82,20 +82,3 @@ body {
     position: relative;
     display: inline-block;
   }
-  
-  .delete-button {
-    position: absolute;
-    top: 17px;
-    right: 13px;
-    cursor: pointer;
-    z-index: -1;
-    opacity: 0; 
-    transition: opacity 0.3s ease; 
-    color: #000000;
-  }
-  
-  .image-preview-container:hover .delete-button {
-    z-index: 1;
-    opacity: 1; 
-  }
-  
