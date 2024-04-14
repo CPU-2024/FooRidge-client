@@ -7,7 +7,7 @@ import Main from './Main/Main';
 import Search from './Search/Search';
 import Post from './Post/Post';
 import Mypage from './Mypage/Mypage';
-// import Statuspost from './Statuspost/Statuspost'; // Statuspost import 추가
+import Statuspost from './Statuspost/Statuspost'; // Statuspost import 추가
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
       <Route path='/post' element={<Post/>}/>
       <Route path='/search' element={<Search/>}/>
       <Route path='/mypage' element={<Mypage/>}/>
-      {/* <Route path='/statuspost' element={<Statuspost/>}/> Statuspost 경로 추가 */}
+      <Route path='/statuspost' element={<Statuspost/>}/>
       </Routes>
     </Router>
   );
