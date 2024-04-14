@@ -1,0 +1,58 @@
+.Statuspost{
+    flex-direction: column;
+    overflow-y: auto; 
+    max-height:95vh; 
+    position: relative;
+}
+.containerDetaillButton{
+    margin-bottom: 20px;
+}
+.Statuspost>.posttitle{
+    margin-top: 45px;
+    margin-left: 40px;
+    margin-bottom: 20px;
+    font-weight: 1000;
+    font-size: larger;
+}
+  
+  .moreOptionsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+  }
+  
+  .moreOptions {
+    display: flex;
+    flex-direction: column;
+    margin-left: 250px;
+    height: 55px;
+  }
+  
+  .moreOptions button,.showMoreButton {
+    width: 86px;
+    height: 27px;
+    background-color: white;
+    border-style: none;
+    
+}
+.showMoreButton{
+    border-radius: 14px;
+    border-color: #3FAF43;
+    border-style: solid;
+    border-width: 1px;
+    color: #3FAF43;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 250px;
+    margin-bottom: 5px;
+  }
+  .showMoreButton svg {
+    margin-left: 5px;
+  }
+  
+.detailbutton{
+    align-items: center;
+    
+}
