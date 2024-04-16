@@ -1,13 +1,32 @@
 import React, { useState, useEffect } from "react";
-import './Statuspost.css';
-import markimg from '../assets/fruitstore.png';
+import "./Statuspost.css";
+import markimg from "../assets/fruitstore.png";
 import { BsChevronDown } from "react-icons/bs";
-import BottomBar from'../Main/BottomBar';
+import BottomBar from "../Main/BottomBar";
+import SortingOptionsModal from "./SortingOptionsModal"; // 모달 컴포넌트를 import 합니다.
 
 const Statuspost = () => {
-  const [showMore, setShowMore] = useState(false); 
-  const [sortedButtons, setSortedButtons] = useState([]); 
-  const [sortingOption, setSortingOption] = useState('new '); 
+  const [showMore, setShowMore] = useState(false);
+  const [sortedButtons, setSortedButtons] = useState([]);
+  const [sortingOption, setSortingOption] = useState(null); // 모달 상태를 저장할 상태 추가
+
+  const toggleShowMore = () => {
+    setShowMore(!showMore);
+  };
+
+  const toggleSortingOption = (option) => {
+    setSortingOption(option);
+    setShowMore(false);
+  };
+
+  useEffect(() => {
+    if (sortingOption === "new") {
+      const sorted = buttons.slice().sort((a, b) => b.date - a.date);
+      setSortedButtons(sorted);
+    } else {
+      setSortedButtons(buttons);
+    }
+  }, [sortingOption]);
 
   const buttons = [
     {
@@ -71,53 +90,26 @@ const Statuspost = () => {
       date : 20141213
     },
 
+
   ];
-
-  useEffect(() => {
-    if (sortingOption === 'new ') {
-      const sorted = buttons.slice().sort((a, b) => b.date - a.date); 
-      setSortedButtons(sorted); 
-    } else {
-      setSortedButtons(buttons); 
-    }
-  }, [sortingOption]); 
-
-  const toggleShowMore = () => {
-    setShowMore(!showMore);
-  };
-
-  const hideAllButtons = () => {
-    setShowMore(false); 
-  };
-
-  const toggleSortingOption = (option) => {
-    setSortingOption(option); 
-    setShowMore(false); 
-  };
 
   return (
     <div className="Statuspost">
       <p className="posttitle">푸릿지 참여 현황</p>
       <button className="showMoreButton" onClick={toggleShowMore}>
-        {showMore ? sortingOption : (
-          <>
-            {sortingOption} <BsChevronDown />
-          </>
-        )}
+        {showMore ? sortingOption : <>{sortingOption}<BsChevronDown /></>}
       </button>
 
       {showMore && (
-        <div className="moreOptions">
-          <button onClick={() => toggleSortingOption('new ')}>new</button>
-          <button onClick={() => toggleSortingOption('거리순')}>거리순</button>
-          <button onClick={() => toggleSortingOption('인기순')}>인기순</button>
-        </div>
+        <SortingOptionsModal isOpen={true} toggleSortingOption={toggleSortingOption} />
       )}
+
       <div className="containerDetaillButton">
         {sortedButtons.map((button, index) => (
           <div key={index} className="detailbutton">
             <button className="detail">
-              <img src={button.image} alt={button.name} /><br />
+              <img src={button.image} alt={button.name} />
+              <br />
               <div className="detailtext">
                 <p className="storename">{button.name}</p>
                 <p className="storedetail">{button.description}</p>
@@ -126,9 +118,9 @@ const Statuspost = () => {
           </div>
         ))}
       </div>
-      <div className='bottom_bar'>
-          <BottomBar />
-        </div>
+      <div className="bottom_bar">
+        <BottomBar />
+      </div>
     </div>
   );
 };
