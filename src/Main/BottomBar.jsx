@@ -23,6 +23,9 @@ function BottomBar() {
       case '/mypage':
         setActiveIcon('mypage');
         break;
+        case '/chat':
+          setActiveIcon('chat');
+          break;
       default:
         setActiveIcon(null);
     }
@@ -41,12 +44,13 @@ function BottomBar() {
   }
 
   const handleSearchClick = () => {
-    setActiveIcon('search');
+    navigate('/search');
   }
 
-  const handleChatClick = () => {
-    setActiveIcon('chat');
+  const handleChatClick = ()=>{
+    navigate('/chat')
   }
+
 
   return (
     <div className='bottom_bar'>
