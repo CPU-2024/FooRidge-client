@@ -8,7 +8,7 @@ import SortingOptionsModal from "./SortingOptionsModal"; // 모달 컴포넌트�
 const Statuspost = () => {
   const [showMore, setShowMore] = useState(false);
   const [sortedButtons, setSortedButtons] = useState([]);
-  const [sortingOption, setSortingOption] = useState(null); // 모달 상태를 저장할 상태 추가
+  const [sortingOption, setSortingOption] = useState("new"); // 모달 상태를 저장할 상태 추가
 
   const toggleShowMore = () => {
     setShowMore(!showMore);
