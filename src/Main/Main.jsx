@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate  } from 'react-router-dom';
 import Slide from '../Main/Slide.jsx';
 import logo from '../assets/logo.png'; // 이미지 파일 경로를 맞게 수정해주세요
 import about from '../assets/About.png';
@@ -10,17 +11,15 @@ import about6 from '../assets/About6.png';
 import share from '../assets/share.png';
 import low_price from '../assets/low price.png';
 import dunkin from '../assets/dunkin.png';
-import { useNavigate } from 'react-router-dom';
 import BottomBar from './BottomBar';
 
 import '../Main/Main.css';
 
 export default function Main() {
-  const navigate = useNavigate();
-
+  const navigate = useNavigate ();
 
   const handleMore = () => {
-    navigate(''); // 더보기 페이지로 이동
+    navigate('/Statuspost'); // 더보기 페이지로 이동
   };
 
   const stores = [
