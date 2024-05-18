@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import '../Search/Search.css';
+import { useNavigate } from 'react-router-dom';
 import fastfoodIcon from '../assets/fastfoodIcon.png'; import cafeIcon from '../assets/cafeIcon.png'; import restaurantIcon from '../assets/restaurantIcon.png';
 import fruitIcon from '../assets/fruitIcon.png'; import marketIcon from '../assets/marketIcon.png'; import petIcon from '../assets/petIcon.png';
 import paikdabang from '../assets/paikdabang.png'; import fruitstore from '../assets/fruitstore.png'; import hamberger from '../assets/hamberger.png';
@@ -9,6 +10,11 @@ import BottomBar from'../Main/BottomBar';
 
 const Search = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate ();
+
+  const handleMore = () => {
+    navigate('/Statuspost'); // 더보기 페이지로 이동
+  };
 
   const storepost =[
     {
@@ -119,7 +125,7 @@ const Search = () => {
       <div className="searchfullcontents">
         <div className="searchdetail">
           <p className="title">가장 가까운</p>
-          <p className="more">더보기</p>
+          <p className="more" onClick={handleMore}>더보기</p>
         </div>
         {storepost.map((store, index) => (
           <div key={index} className="detailbutton">
@@ -135,7 +141,7 @@ const Search = () => {
 
         <div className="searchdetail">
           <p className="title">가장 인기있는</p>
-          <p className="more">더보기</p>
+          <p className="more" onClick={handleMore}>더보기</p>
         </div>
         {famousstore.map((store, index) => (
           <div key={index} className="detailbutton">
