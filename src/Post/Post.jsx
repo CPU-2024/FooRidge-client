@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import './Post.css';
+import styles from './Post.module.css'; // Import the CSS module
 import uploadIcon from '../assets/poto.png';
 import { useNavigate } from 'react-router';
 import { FaChevronLeft } from 'react-icons/fa';
 import axios from 'axios';
-import { IoMdClose } from "react-icons/io";
 
 const Post = () => {
   const [filePaths, setFilePaths] = useState([]);
@@ -35,6 +34,7 @@ const Post = () => {
     } else {
       setPriceVisible(false);
     }
+    setTradeMethod(option);
   };
 
   const handlePost = async () => {
@@ -58,8 +58,16 @@ const Post = () => {
         alert('글 등록 성공');
       }
     } catch (error) {
-      alert('글 등록 실패');
-      console.log(error);
+      if (error.response) {
+        console.log('Server responded with:', error.response.status, error.response.data);
+        alert(`글 등록 실패: ${error.response.data.message}`);
+      } else if (error.request) {
+        console.log('No response received:', error.request);
+        alert('글 등록 실패: 서버 응답이 없습니다.');
+      } else {
+        console.log('Error before sending request:', error.message);
+        alert('글 등록 실패: 요청을 보내는 중 오류가 발생했습니다.');
+      }
     }
   };
 
@@ -73,56 +81,70 @@ const Post = () => {
   };
 
   return (
-    <div>
-      <div className="header">
-        <button onClick={() => navigate(-1)}>
+    <div className={styles.body}>
+      <div className={styles.header}>
+        <button onClick={() => navigate(-1)} className={styles.headerButton}>
           <FaChevronLeft />
         </button>
         <p>나눔하기</p>
       </div>
-      <hr />
-      <div className="post">
-        <input type="file" accept="image/*" onChange={handleImageChange} style={{ display: 'none' }} id="upload-input" multiple />
-        <label htmlFor="upload-input">
-          <img src={uploadIcon} alt="Upload Icon" className="upload-icon" />
-        </label>
+      <div className={styles.postDetail}>
+        <div className={styles.post}>
+          <input type="file" accept="image/*" onChange={handleImageChange} style={{ display: 'none' }} id="upload-input" multiple />
+          <label htmlFor="upload-input">
+            <img src={uploadIcon} alt="Upload Icon" className={styles.uploadIcon} />
+          </label>
 
-        {filePaths.map((image, index) => (
-          <div key={index} className="image-preview-container">
-            <div className="delete-button" onClick={() => handleDeleteImage(index)}>
+          {filePaths.map((image, index) => (
+            <div key={index} className={styles.imagePreviewContainer}>
+              <div className={styles.deleteButton} onClick={() => handleDeleteImage(index)}></div>
+              <img src={image} alt={`Preview ${index}`} className={styles.imagePreview} onClick={() => handleDeleteImage(index)} />
             </div>
-            <img src={image} alt={`Preview ${index}`} className="image-preview" onClick={() => handleDeleteImage(index)} />
-          </div>
-        ))}
-      </div>
-      <div className="postdetail">
-        <label>제목</label>
+          ))}
+        </div>
+        <input type="text" placeholder="제목" value={postTitle} onChange={(e) => setTitle(e.target.value)} className={styles.postTitleInput} />
         <br />
-        <input type="text" placeholder="제목" value={postTitle} onChange={(e) => setTitle(e.target.value)} />
-        <br />
+        <label>카테고리</label>
+        <div className={styles.categoryContainer}>
+          <button className={`${styles.categoryButton} ${selectedOption === 'fastfood' ? styles.selectedButton : ''}`} onClick={() => setSelectedOption('fastfood')}>
+            패스트푸드
+          </button>
+          <button className={`${styles.categoryButton} ${selectedOption === 'cafe' ? styles.selectedButton : ''}`} onClick={() => setSelectedOption('cafe')}>
+            카페
+          </button>
+          <button className={`${styles.categoryButton} ${selectedOption === 'restaurant' ? styles.selectedButton : ''}`} onClick={() => setSelectedOption('restaurant')}>
+            음식점
+          </button>
+          <button className={`${styles.categoryButton} ${selectedOption === 'fruits' ? styles.selectedButton : ''}`} onClick={() => setSelectedOption('fruits')}>
+            과일 채소
+          </button>
+          <button className={`${styles.categoryButton} ${selectedOption === 'store' ? styles.selectedButton : ''}`} onClick={() => setSelectedOption('store')}>
+            가게
+          </button>
+          <button className={`${styles.categoryButton} ${selectedOption === 'pets' ? styles.selectedButton : ''}`} onClick={() => setSelectedOption('pets')}>
+            애완 동물
+          </button>
+        </div>
         <label>거래 방식</label>
         <br />
-        <button className={selectedOption === 'sale' ? 'selected-button' : ''} onClick={() => handleButtonClick('sale')} value="판매">
+        <button className={`${styles.tradeButton} ${selectedOption === 'sale' ? styles.selectedButton : ''}`} onClick={() => handleButtonClick('sale')} value="판매">
           판매
         </button>
-        <button className={selectedOption === 'donation' ? 'selected-button' : ''} onClick={() => handleButtonClick('donation')} value="가부">
+        <button className={`${styles.tradeButton} ${selectedOption === 'donation' ? styles.selectedButton : ''}`} onClick={() => handleButtonClick('donation')} value="기부">
           기부
         </button>
         <br />
-
         {priceVisible && (
           <>
-            <label>가격</label>
-            <br />
-            <input type="text" placeholder="가격" value={price} onChange={(e) => setPrice(e.target.value)} />
+            <input type="text" placeholder="가격" value={price} onChange={(e) => setPrice(e.target.value)} className={styles.priceInput} />
             <br />
           </>
         )}
         <label>자세한 설명</label>
         <br />
-        <textarea className="postexplanation" rows="7" placeholder="자세한 설명을 입력하세요." value={postContent} onChange={(e) => setContent(e.target.value)}></textarea>
-        <div className="registration">
-          <button onClick={handlePost} type="submit">
+        <textarea className={styles.postExplanation} rows="7" placeholder="자세한 설명을 입력하세요." value={postContent} onChange={(e) => setContent(e.target.value)}></textarea>
+        <div className={styles.registration}>
+          <button onClick={handlePost} type="submit" className={styles.registrationButton}>
             등록하기
           </button>
         </div>
