@@ -44,37 +44,3 @@ h2 {
     width: 100%;
     margin-top: 0;
 }
-
-/* Media Queries for responsiveness */
-/* @media (max-width: 768px) {
-    .Logo {
-        margin-top: 100px;
-    }
-
-    h2 {
-        margin-top: 20px;
-    }
-
-    .button {
-        margin-top: 10%;
-    }
-}
-
-@media (max-width: 480px) {
-    .Logo {
-        margin-top: 50px;
-    }
-
-    h2 {
-        margin-top: 10px;
-    }
-
-    .signup, .signin {
-        height: 45px;
-        max-width: 250px;
-    }
-
-    .button {
-        margin-top: 5%;
-    }
-} */

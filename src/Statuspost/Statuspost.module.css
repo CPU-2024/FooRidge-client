@@ -1,0 +1,106 @@
+.Statuspost {
+  display: flex; /* 추가 */
+  flex-direction: column;
+  align-items: center; /* 추가 */
+  overflow-y: auto;
+  max-height: 95vh;
+  position: relative;
+}
+
+.containerDetaillButton {
+  width: 100%; /* 추가 */
+  display: flex; /* 추가 */
+  flex-direction: column; /* 추가 */
+  align-items: center; /* 추가 */
+  margin-bottom: 20px;
+}
+
+.posttitle {
+  margin-top: 45px;
+  margin-bottom: 20px;
+  font-weight: 1000;
+  font-size: larger;
+}
+
+.moreOptionsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.moreOptions {
+  display: flex;
+  flex-direction: column;
+  margin-left: 250px;
+  height: 55px;
+}
+
+.moreOptions button,
+.showMoreButton {
+  width: 86px;
+  height: 27px;
+  background-color: white;
+  border-style: none;
+}
+
+.showMoreButton {
+  border-radius: 14px;
+  border-color: #3faf43;
+  border-style: solid;
+  border-width: 1px;
+  color: #3faf43;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 230px;
+  margin-bottom: 5px;
+  padding: 10px;
+}
+
+.showMoreButton svg {
+  margin-left: 5px;
+}
+
+.detailbutton {
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+  width: 100%; 
+}
+
+.detail {
+  display: flex;
+  align-items: center;
+  width: 320px;
+  height: 56px;
+  background-color: #fff;
+  box-shadow: 0px 4px 5px rgb(0, 0, 0, 0.1);
+  border-radius: 5px;
+  border: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-right: 20px;
+}
+
+.detail img {
+  margin-right: 20px;
+}
+
+.detailtext {
+  text-align: left;
+}
+
+.storename {
+  color: #3faf43;
+  font-weight: 800;
+}
+
+.storedetail {
+  color: #000;
+}
+
+.bottom_bar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}

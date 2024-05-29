@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
-import '../Location/location.css';
+import { useNavigate, useParams } from 'react-router-dom';
+import styles from './location.module.css';
 import { FaChevronLeft } from "react-icons/fa";
-import axios from 'axios'
-import { useParams } from "react-router-dom";
-
+import axios from 'axios';
 
 const Location = () => {
     const { userId } = useParams();
@@ -106,22 +104,22 @@ const Location = () => {
     };
 
     return (
-        <div className="location">
-            <div className="header">
-            <button onClick={() => navigate(-1)}><FaChevronLeft/></button> 
-            <p>회원가입</p>
+        <div className={styles.location}>
+            <div className={styles.header}>
+                <button onClick={() => navigate(-1)}><FaChevronLeft /></button>
+                <p>회원가입</p>
             </div>
-            <hr />
-            <div className="map" id="map" style={{ width: "328px", height: "450px" }}></div>
+            <hr className={styles.hr} />
+            <div className={styles.map} id="map" style={{ width: "328px", height: "450px" }}></div>
             {state.userLocation && (
                 <>
-                    <h4 className="adress">주소</h4>
-                    <div className="get_adress">
+                    <h4 className={styles.adress}>주소</h4>
+                    <div className={styles.get_adress}>
                         <p>{state.userLocation.address}</p>
                     </div>
                 </>
             )}
-            <button className="location_storage" onClick={handleSaveLocation}>
+            <button className={styles.location_storage} onClick={handleSaveLocation}>
                 내 위치 저장
             </button>
         </div>

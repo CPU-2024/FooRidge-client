@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './Post.module.css'; // Import the CSS module
+import styles from './Post.module.css';
 import uploadIcon from '../assets/poto.png';
 import { useNavigate } from 'react-router';
 import { FaChevronLeft } from 'react-icons/fa';

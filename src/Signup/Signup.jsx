@@ -1,8 +1,32 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; 
-import '../Signup/Signup.css'
+import { useNavigate } from 'react-router-dom';
+import styles from '../Signup/Signup.module.css';
 import { FaChevronLeft } from "react-icons/fa";
 import axios from 'axios';
+
+const Header = ({ navigate }) => {
+  return (
+    <div className={styles.headerContainer}>
+      <div className={styles.header}>
+        <button onClick={() => navigate(-1)}><FaChevronLeft /></button>
+        <p>회원가입</p>
+      </div>
+    </div>
+  );
+};
+
+const NicknameInput = ({ userName, onNicknameHandler, checkNicknameAvailability, isNicknameAvailable }) => {
+  return (
+    <div className={styles.nicknameContainer}>
+      <label>닉네임</label>
+      <div className={styles.nicknameInput}>
+        <input className={styles.nickname} type='text' value={userName} onChange={onNicknameHandler} placeholder="닉네임" />
+        <button className={styles.check} type='button' onClick={checkNicknameAvailability}>중복확인</button>
+      </div>
+      {!isNicknameAvailable && <p className={styles.nicknameError}>이미 사용 중인 닉네임입니다.</p>}
+    </div>
+  );
+};
 
 const EmailInput = ({ onEmailChange }) => {
   const [emailValue, setEmailValue] = useState("");
@@ -38,8 +62,6 @@ const EmailInput = ({ onEmailChange }) => {
     onEmailChange(suggestion);
   };
 
-  
-
   return (
     <>
       <input
@@ -58,12 +80,22 @@ const EmailInput = ({ onEmailChange }) => {
   );
 };
 
-const Signup = () => {
+const PasswordInput = ({ userPassword, confirmPassword, onPasswordHandler, onConfirmPasswordHandler, passwordValidation }) => {
+  return (
+    <div className={styles.password}>
+      <label>비밀번호</label>
+      <input type='password' value={userPassword} onChange={onPasswordHandler} placeholder="비밀번호" />
+      <input type='password' value={confirmPassword} onChange={onConfirmPasswordHandler} placeholder="비밀번호 확인" />
+      <p className={styles.passwordcondition}>6~20글자/대문자,소문자,숫자,특수문자 중 2가지 이상 조합</p>
+    </div>
+  );
+};
 
-  const navigate = useNavigate(); // Using useNavigate hook
+const Signup = () => {
+  const navigate = useNavigate();
   const [userEmail, setEmail] = useState("");
   const [userPassword, setPassword] = useState("");
-  const [ConfirmPassword, setConfirmPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [userName, setNickname] = useState("");
   const [isNicknameAvailable, setIsNicknameAvailable] = useState(true);
   const [passwordValidation, setPasswordValidation] = useState({
@@ -73,7 +105,6 @@ const Signup = () => {
     number: false,
     specialChar: false,
   });
-
   const [isFocused, setIsFocused] = useState(false);
 
   const validatePassword = (password) => {
@@ -127,19 +158,16 @@ const Signup = () => {
   const onSubmitHandler = async (event) => {
     event.preventDefault();
 
-    // 닉네임 중복 확인 로직
     if (!isNicknameAvailable) {
       alert('이미 사용 중인 닉네임입니다.');
       return;
     }
 
-    // 비밀번호 확인
-    if (userPassword !== ConfirmPassword) {
+    if (userPassword !== confirmPassword) {
       alert('비밀번호가 일치하지 않습니다.');
       return;
     }
 
-    // 비밀번호 유효성 검사
     if (!validatePassword(userPassword)) {
       alert('6~20글자/대문자, 소문자, 숫자, 특수문자 중 2가지 이상을 조합해 주세요.');
       return;
@@ -147,53 +175,50 @@ const Signup = () => {
   };
 
   const handleJoinClick = async () => {
-    const newUser = { userName, userEmail, userPassword }
+    const newUser = { userName, userEmail, userPassword };
     try {
-      const response = await axios.post('http://localhost:8080/user', newUser)
+      const response = await axios.post('http://localhost:8080/user', newUser);
       if (response.status === 201) {
-        alert('회원가입을 성공하셨습니다')
+        alert('회원가입을 성공하셨습니다');
         const { userId } = response.data;
 
-        // id값을 나중에 써야하기 때문에 템플릿으로 불러오기
         navigate(`/location/${userId}`);
         console.log("Nickname:", userName);
         console.log("Password:", userPassword);
         console.log("Email:", userEmail);
       }
     } catch (error) {
-      alert('회원가입을 실패하셨습니다')
-      console.log(error)
+      alert('회원가입을 실패하셨습니다');
+      console.log(error);
     }
+  };
 
-  }
   return (
     <div>
-      <div className="header">
-        <button onClick={() => navigate(-1)}><FaChevronLeft/></button> 
-        <p>회원가입</p>
-      </div>
-      <hr />
-      <form style={{ display: 'flex', flexDirection: 'column' }} onSubmit={onSubmitHandler}>
-        <div className="signupinput">
-          <label>닉네임</label><br />
-          <input className='nickname' type='text' value={userName} onChange={onNicknameHandler} placeholder="닉네임" />
-          <button className='check' type='button' onClick={checkNicknameAvailability}>중복확인</button>
-          {!isNicknameAvailable && <p className="nickname-error">이미 사용 중인 닉네임입니다.</p>}<br />
-          <div className="email">
-            <label>이메일</label><br />
+      <Header navigate={navigate} />
+      <hr className={styles.hr} />
+      <form className={styles.form} onSubmit={onSubmitHandler}>
+        <div className={styles.signupinput}>
+          <NicknameInput
+            userName={userName}
+            onNicknameHandler={onNicknameHandler}
+            checkNicknameAvailability={checkNicknameAvailability}
+            isNicknameAvailable={isNicknameAvailable}
+          />
+          <div className={styles.email}>
+            <label>이메일</label>
             <EmailInput onEmailChange={onEmailChange} />
           </div>
-          <div className="password">
-            <label>비밀번호</label><br />
-            <input type='password' value={userPassword} onChange={onPasswordHandler} placeholder="비밀번호" />
-            <input type='password' value={ConfirmPassword} onChange={onConfirmPasswordHandler} placeholder="비밀번호 확인" /><br />
-            <p className='passwordcondition'>6~20글자/대문자,소문자,숫자,특수문자 중 2가지 이상 조합</p>
-          </div>
-
+          <PasswordInput
+            userPassword={userPassword}
+            confirmPassword={confirmPassword}
+            onPasswordHandler={onPasswordHandler}
+            onConfirmPasswordHandler={onConfirmPasswordHandler}
+            passwordValidation={passwordValidation}
+          />
         </div>
-        <br />
-        <div className="loginbutton">
-          <button onClick={handleJoinClick} className='join' type='submit'>가입하기</button>
+        <div className={styles.loginbutton}>
+          <button onClick={handleJoinClick} className={styles.join} type='submit'>가입하기</button>
         </div>
       </form>
     </div>
