@@ -50,7 +50,7 @@ form {
 .signupinput > .password input,
 .email input {
     margin-top: 10px;
-    width: 317px;
+    width: 310px;
     height: 44px;
 }
 
@@ -125,7 +125,6 @@ label{
 
 .loginbutton {
     text-align: center;
-    margin-left: 15px;
 }
 
 .nicknameError {
