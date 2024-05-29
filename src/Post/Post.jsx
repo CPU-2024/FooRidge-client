@@ -127,12 +127,14 @@ const Post = () => {
         </div>
         <label>거래 방식</label>
         <br />
+        <div className={`${styles.transaction}`}>
         <button className={`${styles.tradeButton} ${selectedOption === 'sale' ? styles.selectedButton : ''}`} onClick={() => handleButtonClick('sale')} value="판매">
           판매
         </button>
         <button className={`${styles.tradeButton} ${selectedOption === 'donation' ? styles.selectedButton : ''}`} onClick={() => handleButtonClick('donation')} value="기부">
           기부
         </button>
+        </div>
         <br />
         {priceVisible && (
           <>

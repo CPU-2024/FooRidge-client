@@ -40,7 +40,6 @@
   width: 100%;
   max-width: 360px;
   margin: 0 auto;
-  text-align: left;
 }
 
 .postDetail input,
@@ -84,8 +83,13 @@
   color: white;
 }
 
+.transaction{
+  text-align: left;
+  margin-left: 10px;
+}
+
 .postDetail > .registration button {
-  width: 360px;
+  width: 340px;
   height: 49px;
   background-color: #3faf43;
   color: #fff;
@@ -127,7 +131,8 @@ p {
   padding: 10px 0;
   margin-bottom: 10px;
   -ms-overflow-style: none;
-  scrollbar-width: none;  
+  scrollbar-width: none; 
+  margin-left: 10px; 
 }
 
 .categoryButton {
