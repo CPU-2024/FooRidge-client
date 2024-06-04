@@ -7,8 +7,8 @@
     flex-direction: column;
     align-items: center;
     margin-top: 30px;
-    overflow-y: auto; /* 세로 스크롤 가능하도록 설정 */
-    max-height:95vh; /* 최대 높이 설정 (화면 높이의 80%) */
+    overflow-y: auto;
+    max-height:95vh;
 
 }
 

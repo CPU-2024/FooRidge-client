@@ -1,37 +1,51 @@
+.location {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 .header {
   margin-top: 15px;
   display: flex;
   align-items: center;
-  text-align: center;
+  width: 90%;
+  max-width: 328px;
 }
-hr{
+
+hr {
+  width: 90%;
+  max-width: 328px;
   margin-top: 15px;
 }
 
 .header p {
-  margin: 0; 
+  margin: 0;
   flex-grow: 1;
   margin-left: -10px;
-}.map{
-  margin-top: 4%;
-  margin-left: 8px;
+  text-align: center;
 }
 
-.location_storage{
-  width: 336px;
+.map {
+  margin-top: 4%;
+  width: 90%;
+  max-width: 328px;
+  height: 450px;
+}
+
+.location_storage {
+  width: 90%;
+  max-width: 328px;
   height: 49px;
   color: #fff;
   border-radius: 10px;
   border-style: solid;
   border-color: #3faf43;
   background-color: #3faf43;
-  margin-left: 4px;
-  margin-top: 30px;
+  margin: 30px auto 0;
   font-size: 15px;
 }
 
-.get_location{
+.get_location {
   width: 100px;
   height: 30px;
   color: #fff;
@@ -43,15 +57,18 @@ hr{
   margin-top: 2%;
 }
 
-.get_adress{
+.get_adress {
   border-radius: 7px;
   border: solid 1px #3faf43;
-  margin-top: 10px;
-  margin-left: 8px;
-  width: 327px;
+  margin: 10px auto 0;
+  width: 90%;
+  max-width: 328px;
 }
-.adress{
+
+.adress {
   margin-top: 25px;
   margin-left: 10px;
   margin-bottom: 0px;
+  width: 90%;
+  max-width: 328px;
 }

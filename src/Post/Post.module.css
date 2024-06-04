@@ -1,0 +1,145 @@
+.body {
+  margin: 0;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-top: 20px;
+}
+
+.header > button {
+  position: absolute;
+  left: 10px;
+  background-color: #fff;
+  border: none;
+}
+
+.header > p {
+  margin: 0;
+  text-align: center;
+}
+
+.post {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.uploadIcon,
+.imagePreview {
+  width: 60px;
+  height: 60px;
+  margin: 20px 0 0 0;
+  border-radius: 7px;
+  border-width: 1px;
+}
+
+.postDetail {
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+.postDetail input,
+.postDetail button,
+.postDetail textarea {
+  margin: 10px 0 20px 0;
+}
+
+.postDetail input {
+  width: calc(100% - 30px);
+  height: 44px;
+  border: none;
+  border-bottom: 1px solid #cfcfcf;
+  border-radius: 0;
+}
+
+.postDetail textarea {
+  border-radius: 10px;
+  border-style: solid;
+  border-color: rgb(207, 207, 207);
+  border-width: 1px;
+  padding: 10px;
+  width: calc(100% - 30px);
+  margin-top: -10px;
+}
+
+.postDetail button {
+  background-color: #fff;
+  color: #000;
+  width: 75px;
+  height: 35px;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: #3faf43;
+  border-width: 1px;
+  margin-top: -10px;
+}
+
+.postDetail button.selectedButton {
+  background-color: #3faf43;
+  color: white;
+}
+
+.transaction{
+  text-align: left;
+  margin-left: 10px;
+}
+
+.postDetail > .registration button {
+  width: 340px;
+  height: 49px;
+  background-color: #3faf43;
+  color: #fff;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.imagePreviewContainer {
+  position: relative;
+}
+
+.imagePreview {
+  position: relative;
+  display: inline-block;
+}
+
+.postDetail label, .tradeButton  {
+  display: block;
+  text-align: left;
+}
+
+.postDetail .tradeButton {
+  display: inline-block;
+  margin-right: 10px;
+  text-align: center;
+}
+
+p {
+  text-align: center;
+}
+.categoryButton{
+  width: 85px !important;
+  margin: 10px 10px 10px 0!important;
+}
+.categoryContainer {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 10px 0;
+  margin-bottom: 10px;
+  -ms-overflow-style: none;
+  scrollbar-width: none; 
+  margin-left: 10px; 
+}
+
+.categoryButton {
+  display: inline-block;
+  padding: 0 10px 0 10px;
+  background: #ccc;
+  margin-right: 10px;
+  border: none;
+  cursor: pointer;
+}
