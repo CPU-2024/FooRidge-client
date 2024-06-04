@@ -14,7 +14,7 @@ export default function Mypage(){
     // 사용자 정보를 가정한 것, 데이터는 여기 넣어주세요!
     const userInfo = {
         name: 'dinmoy',
-        profilePicture: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.flaticon.com%2Fkr%2Ffree-icon%2Fprofile_3135823&psig=AOvVaw1smAnoSiZkrlHELN-CM0se&ust=1712187406689000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCPCBg6PZpIUDFQAAAAAdAAAAABAT'
+        profilePicture: 'https://i.pinimg.com/736x/41/06/3d/41063d42a91f33039a736b9535a95c85.jpg'
     };
 
     return(

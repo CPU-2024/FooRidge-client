@@ -1,0 +1,39 @@
+/* post-location.css */
+
+.post-location-container {
+  position: relative;
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+#map {
+  width: 320px;
+  height: 300px;
+  margin-bottom: 10px;
+}
+
+.post-location-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  background-color: white;
+}
+
+.address-display{
+  border-radius: 7px;
+  border: solid 1px #3faf43;
+  margin-top: 10px;
+  width: 320px;
+}
+.post-location-button{
+  width: 320px;
+  height: 45px;
+  color: #fff;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: #3faf43;
+  background-color: #3faf43;
+  margin-top: 10px;
+  font-size: 15px;
+  margin-bottom: 20px
+}

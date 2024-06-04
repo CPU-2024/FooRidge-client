@@ -6,6 +6,7 @@ import Location from './Location/location';
 import Main from './Main/Main';
 import Search from './Search/Search';
 import Post from './Post/Post';
+import PostScreen from './PostScreen/PostScreen';
 import Mypage from './Mypage/Mypage';
 import Statuspost from './Statuspost/Statuspost'; // Statuspost import 추가
 import ChatPage from './pages/ChatPage';
@@ -20,6 +21,7 @@ function App() {
       <Route path='/location' element={<Location/>}/>
       <Route path='/main' element={<Main/>}/>
       <Route path='/post' element={<Post/>}/>
+      <Route path='/postscreen' element={<PostScreen/>}/>
       <Route path='/search' element={<Search/>}/>
       <Route path='/mypage' element={<Mypage/>}/>
       <Route path='/statuspost' element={<Statuspost/>}/>
