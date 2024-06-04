@@ -1,19 +1,118 @@
 import React, { useState, useEffect } from "react";
-import '../Search/Search.css';
+import styles from './Search.module.css';
 import { useNavigate } from 'react-router-dom';
-import fastfoodIcon from '../assets/fastfoodIcon.png'; import cafeIcon from '../assets/cafeIcon.png'; import restaurantIcon from '../assets/restaurantIcon.png';
-import fruitIcon from '../assets/fruitIcon.png'; import marketIcon from '../assets/marketIcon.png'; import petIcon from '../assets/petIcon.png';
-import paikdabang from '../assets/paikdabang.png'; import fruitstore from '../assets/fruitstore.png'; import hamberger from '../assets/hamberger.png';
-import dunkin from '../assets/dunkin.png'; import bagette from '../assets/bagette.png'; import waffleuniversity from '../assets/waffleuniversity.png';
-import { BiSearchAlt } from "react-icons/bi"; import { BsBookmark } from "react-icons/bs";
-import BottomBar from'../Main/BottomBar';
+import axios from "axios";
+import { BiSearchAlt } from "react-icons/bi";
+import { BsBookmark } from "react-icons/bs";
+import BottomBar from '../Main/BottomBar';
+import fastfoodIcon from '../assets/fastfoodIcon.png';
+import cafeIcon from '../assets/cafeIcon.png';
+import restaurantIcon from '../assets/restaurantIcon.png';
+import fruitIcon from '../assets/fruitIcon.png';
+import marketIcon from '../assets/marketIcon.png';
+import petIcon from '../assets/petIcon.png';
+import paikdabang from '../assets/paikdabang.png';
+import fruitstore from '../assets/fruitstore.png';
+import hamberger from '../assets/hamberger.png';
+import dunkin from '../assets/dunkin.png';
+import bagette from '../assets/bagette.png';
+import waffleuniversity from '../assets/waffleuniversity.png';
+
+const SearchBar = ({ searchTerm, setSearchTerm }) => (
+  <div className={styles.searchbar}>
+    <BiSearchAlt className={styles.searchIcon} />
+    <input
+      type="text"
+      className={styles.searchbarInput}
+      placeholder="검색어를 입력하세요"
+      value={searchTerm}
+      onChange={(e) => setSearchTerm(e.target.value)}
+    />
+  </div>
+);
+
+const SearchIcons = () => (
+  <div className={styles.searchIcons}>
+    <div className={styles.searchIcon}><img src={fastfoodIcon} alt="패스트푸드" /><br /><span>패스트푸드</span></div>
+    <div className={styles.searchIcon}><img src={cafeIcon} alt="카페" /><br /><span>카페</span></div>
+    <div className={styles.searchIcon}><img src={restaurantIcon} alt="음식점" /><br /><span>음식점</span></div>
+    <div className={styles.searchIcon}><img src={fruitIcon} alt="과일 채소" /><br /><span>과일 채소</span></div>
+    <div className={styles.searchIcon}><img src={marketIcon} alt="마트" /><br /><span>마트</span></div>
+    <div className={styles.searchIcon}><img src={petIcon} alt="반려동물" /><br /><span>반려동물</span></div>
+  </div>
+);
+
+const SearchLocation = () => {
+  useEffect(() => {
+    const func_1 = () => {
+      const mapContainer = document.getElementById('map');
+      const mapOption = { 
+        center: new window.kakao.maps.LatLng(37.5665, 126.9780),
+        level: 3
+      };
+
+      const map = new window.kakao.maps.Map(mapContainer, mapOption);
+
+      const marker = new window.kakao.maps.Marker({
+        position: map.getCenter()
+      });
+
+      marker.setMap(map);
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const userLat = position.coords.latitude;
+            const userLng = position.coords.longitude;
+            marker.setPosition(new window.kakao.maps.LatLng(userLat, userLng));
+            map.setCenter(new window.kakao.maps.LatLng(userLat, userLng));
+          },
+          (error) => {
+            console.error("사용자 위치를 가져오는 중 오류 발생:", error.message);
+          }
+        );
+      } else {
+        console.error("이 브라우저에서는 지오로케이션을 지원하지 않습니다.");
+      }
+    };
+
+    func_1();
+  }, []);
+
+  return (
+    <div className={styles.searchLocation}>
+      <div className={styles.map} id="map" style={{ width: "328px", height: "150px" }}></div>
+      <button className={styles.locationButton} style={{width:"328px",height:"41px"}}>현위치 설정하기</button>
+    </div>
+  );
+};
+const StoreList = ({ title, stores, handleMore, showBookmark = false }) => (
+  <div className={styles.searchfullcontents}>
+    <div className={styles.searchdetail}>
+      <p className={styles.title}>{title}</p>
+      <p className={styles.more} onClick={handleMore}>더보기</p>
+    </div>
+    {stores.map((store, index) => (
+      <div key={index} className={styles.detailbutton}>
+        <button className={styles.detail}>
+          <img src={store.image} alt={store.name} /><br />
+          <div className={styles.detailtext}>
+            <p className={styles.storename}>{store.name}</p>
+            {store.description && <p className={styles.storedetail}>{store.description}</p>}
+          </div>
+          {showBookmark && <div className={styles.bookmark}><BsBookmark /></div>}
+        </button>
+      </div>
+    ))}
+  </div>
+);
 
 const Search = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate ();
 
   const handleMore = () => {
-    navigate('/Statuspost'); // 더보기 페이지로 이동
+    navigate('/Statuspost');
   };
 
   const storepost =[
@@ -34,133 +133,34 @@ const Search = () => {
     }
   ];
 
-  const famousstore=[
+  const famousstore =[
     {
       name:'던킨도넛츠',
       image:dunkin
-    },{
+    },
+    {
       name:'파리바게트',
       image:bagette
-    },{
+    },
+    {
       name:'와플대학',
       image:waffleuniversity
     }
-  ]
-  
-  useEffect(() => {
-    const func_1 = () => {
-      const mapContainer = document.getElementById('map');
-      const mapOption = { 
-        center: new window.kakao.maps.LatLng(37.5665, 126.9780), // 서울의 위도와 경도 (초기값)
-        level: 3
-      };
-
-      const map = new window.kakao.maps.Map(mapContainer, mapOption);
-
-      // 마커를 생성합니다
-      const marker = new window.kakao.maps.Marker({
-        position: map.getCenter()
-      });
-
-      // 마커를 지도에 표시합니다
-      marker.setMap(map);
-
-      // 브라우저가 geolocation을 지원하는지 확인합니다
-      if (navigator.geolocation) {
-        // geolocation을 사용하여 현재 위치를 가져옵니다
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            const userLat = position.coords.latitude;
-            const userLng = position.coords.longitude;
-            // 마커의 위치를 현재 위치로 설정합니다
-            marker.setPosition(new window.kakao.maps.LatLng(userLat, userLng));
-            // 지도의 중심을 현재 위치로 이동합니다
-            map.setCenter(new window.kakao.maps.LatLng(userLat, userLng));
-          },
-          (error) => {
-            console.error("사용자 위치를 가져오는 중 오류 발생:", error.message);
-          }
-        );
-      } else {
-        console.error("이 브라우저에서는 지오로케이션을 지원하지 않습니다.");
-      }
-    };
-
-    func_1();
-  }, []);
-
-  const shortenDescription = (description, maxLength) => {
-    if (description.length <= maxLength) {
-      return description;
-    } else {
-      return `${description.substring(0, maxLength)}...`;
-    }
-  };
+  ];
 
   return (
-    <div className="search">
-        <div className="searchbar">
-          <BiSearchAlt className="searchIcon" />
-          <input
-            type="text"
-            className="searchbarInput"
-            placeholder="검색어를 입력하세요"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
-      
-      <div className="searchIcons">
-        <div className="searchIcon"> <img src={fastfoodIcon} ></img> <br /><span>패스트푸드</span></div>
-        <div className="searchIcon"><img src={cafeIcon}></img><br /><span>카페</span></div>
-        <div className="searchIcon"><img src={restaurantIcon}></img><br /><span>음식점</span></div>
-        <div className="searchIcon"><img src={fruitIcon}></img><br /><span>과일 채소</span></div>
-        <div className="searchIcon"><img src={marketIcon}></img><br /><span>마트</span></div>
-        <div className="searchIcon"><img src={petIcon}></img><br /><span>반려동물</span></div>
-      </div>
-      <div className="searchLocation">
-        <div className="map" id="map" style={{ width: "328px", height: "150px" }}></div>
-        <button className="locationButton" style={{width:"328px",height:"41px"}}>현위치 설정하기</button>
-      </div>
-      <div className="searchfullcontents">
-        <div className="searchdetail">
-          <p className="title">가장 가까운</p>
-          <p className="more" onClick={handleMore}>더보기</p>
-        </div>
-        {storepost.map((store, index) => (
-          <div key={index} className="detailbutton">
-            <button className="detail">
-              <img src={store.image} alt={store.name} /><br />
-              <div className="detailtext">
-                <p className="storename">{store.name}</p>
-                <p className="storedetail">{shortenDescription(store.description,15)}</p>
-              </div>
-            </button>
-          </div>
-        ))}
-
-        <div className="searchdetail">
-          <p className="title">가장 인기있는</p>
-          <p className="more" onClick={handleMore}>더보기</p>
-        </div>
-        {famousstore.map((store, index) => (
-          <div key={index} className="detailbutton">
-            <button className="detail">
-              <img src={store.image} alt={store.name} /><br />
-              <div className="detailtext">
-                <p className="storename">{store.name}</p>
-              </div>
-              <div className="bookmark"><BsBookmark /></div>
-            </button>
-          </div>
-        ))}
-        
-        <div className='bottom_bar'>
-          <BottomBar />
-        </div>
+    <div className={styles.search}>
+      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+      <SearchIcons />
+      <SearchLocation />
+      <StoreList title="가장 가까운" stores      ={storepost} handleMore={handleMore} />
+      <StoreList title="가장 인기있는" stores={famousstore} handleMore={handleMore} showBookmark />
+      <div className={styles.bottom_bar}>
+        <BottomBar />
       </div>
     </div>
   );
 };
 
 export default Search;
+

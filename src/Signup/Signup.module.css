@@ -1,0 +1,134 @@
+
+.header {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 328px;
+  }
+  .headerContainer {
+    display: flex;
+    justify-content: center;
+  }
+  .header p {
+    margin: 0;
+    flex-grow: 1;
+    margin-left: -1px;
+    margin-left: -10px;
+    text-align: center;
+  }
+  
+  hr {
+    width: 90%;
+    max-width: 328px;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+form {
+    margin-top: 40px;
+}
+
+.signupinput {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.signupinput > div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 330px;
+    margin-bottom: 20px;
+}
+
+.signupinput > input,
+.signupinput > .password input,
+.email input {
+    margin-top: 10px;
+    width: 310px;
+    height: 44px;
+}
+
+.nicknameContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 317px;
+    margin-bottom: 20px;
+}
+
+.nicknameInput {
+    display: flex;
+    align-items: center;
+}
+
+.nicknameInput > input {
+    width: 201px;
+    height: 44px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.check {
+    width: 104px;
+    height: 48px;
+    color: #fff;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: #3faf43;
+    background-color: #3faf43;
+    margin-top: 10px;
+}
+
+.join {
+    width: 336px;
+    height: 48px;
+    color: #fff;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: #3faf43;
+    background-color: #3faf43;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.passwordcondition {
+    margin-top: 15px;
+    font-size: 8pt;
+    margin-left: 5px;
+    margin-bottom: 30px;
+}
+
+.password {
+    margin-top: 40px;
+}
+
+.email {
+    margin-top: 20px;
+}
+label{
+    margin-left: 10px;
+}
+.signupinput input:focus,
+.password input:focus,
+.email input:focus,
+.addressdiv input:focus {
+    border-color: rgb(241, 158, 3);
+    outline: none;
+    border-width: 2px;
+}
+
+.loginbutton {
+    text-align: center;
+}
+
+.nicknameError {
+    color: red;
+    font-size: 8pt;
+    margin-left: 5px;
+}
