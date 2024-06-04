@@ -9,6 +9,7 @@ const Post = () => {
   const [filePaths, setFilePaths] = useState([]);
   const [files, setFiles] = useState([]);
   const [selectedOption, setSelectedOption] = useState('');
+  const [category, setCategory] = useState('');
   const [priceVisible, setPriceVisible] = useState(false);
   const [postTitle, setTitle] = useState('');
   const [tradeMethod, setTradeMethod] = useState('');
@@ -44,6 +45,7 @@ const Post = () => {
       formData.append('tradeMethod', tradeMethod);
       formData.append('price', price);
       formData.append('postContent', postContent);
+      formData.append('category', category);  // 카테고리 추가
       files.forEach((file) => {
         formData.append('file', file);
       });
@@ -80,6 +82,10 @@ const Post = () => {
     setFiles(newFiles);
   };
 
+  const handleCategoryClick = (category) => {
+    setCategory(category);
+  };
+
   return (
     <div className={styles.body}>
       <div className={styles.header}>
@@ -106,34 +112,34 @@ const Post = () => {
         <br />
         <label>카테고리</label>
         <div className={styles.categoryContainer}>
-          <button className={`${styles.categoryButton} ${selectedOption === 'fastfood' ? styles.selectedButton : ''}`} onClick={() => setSelectedOption('fastfood')}>
+          <button className={`${styles.categoryButton} ${category === 'fastfood' ? styles.selectedButton : ''}`} onClick={() => handleCategoryClick('fastfood')} value="패스트푸드">
             패스트푸드
           </button>
-          <button className={`${styles.categoryButton} ${selectedOption === 'cafe' ? styles.selectedButton : ''}`} onClick={() => setSelectedOption('cafe')}>
+          <button className={`${styles.categoryButton} ${category === 'cafe' ? styles.selectedButton : ''}`} onClick={() => handleCategoryClick('cafe')} value="카페">
             카페
           </button>
-          <button className={`${styles.categoryButton} ${selectedOption === 'restaurant' ? styles.selectedButton : ''}`} onClick={() => setSelectedOption('restaurant')}>
+          <button className={`${styles.categoryButton} ${category === 'restaurant' ? styles.selectedButton : ''}`} onClick={() => handleCategoryClick('restaurant')} value="음식점">
             음식점
           </button>
-          <button className={`${styles.categoryButton} ${selectedOption === 'fruits' ? styles.selectedButton : ''}`} onClick={() => setSelectedOption('fruits')}>
+          <button className={`${styles.categoryButton} ${category === 'fruits' ? styles.selectedButton : ''}`} onClick={() => handleCategoryClick('fruits')} value="과일 채소">
             과일 채소
           </button>
-          <button className={`${styles.categoryButton} ${selectedOption === 'store' ? styles.selectedButton : ''}`} onClick={() => setSelectedOption('store')}>
+          <button className={`${styles.categoryButton} ${category === 'store' ? styles.selectedButton : ''}`} onClick={() => handleCategoryClick('store')} value="가게">
             가게
           </button>
-          <button className={`${styles.categoryButton} ${selectedOption === 'pets' ? styles.selectedButton : ''}`} onClick={() => setSelectedOption('pets')}>
+          <button className={`${styles.categoryButton} ${category === 'pets' ? styles.selectedButton : ''}`} onClick={() => handleCategoryClick('pets')} value="애완 동물">
             애완 동물
           </button>
         </div>
         <label>거래 방식</label>
         <br />
         <div className={`${styles.transaction}`}>
-        <button className={`${styles.tradeButton} ${selectedOption === 'sale' ? styles.selectedButton : ''}`} onClick={() => handleButtonClick('sale')} value="판매">
-          판매
-        </button>
-        <button className={`${styles.tradeButton} ${selectedOption === 'donation' ? styles.selectedButton : ''}`} onClick={() => handleButtonClick('donation')} value="기부">
-          기부
-        </button>
+          <button className={`${styles.tradeButton} ${selectedOption === 'sale' ? styles.selectedButton : ''}`} onClick={() => handleButtonClick('sale')} value="판매">
+            판매
+          </button>
+          <button className={`${styles.tradeButton} ${selectedOption === 'donation' ? styles.selectedButton : ''}`} onClick={() => handleButtonClick('donation')} value="기부">
+            기부
+          </button>
         </div>
         <br />
         {priceVisible && (
