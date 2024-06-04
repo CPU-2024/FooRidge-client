@@ -1,0 +1,15 @@
+#post-profile{
+    display: flex;
+    flex-direction: row;
+    padding-left: 20px;
+    padding-top: 15px;
+}
+.post-profile-photo{
+    margin-right: 10px;
+}
+.post-profile-name{
+    /* text-align: right; */
+    margin-top: 13px;
+    /* margin-right: 200px; */
+    /* margin-bottom: 30px; */
+}
